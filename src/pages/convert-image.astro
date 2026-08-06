@@ -1,0 +1,32 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ConvertImageTool from "../components/ConvertImageTool";
+import FaqSection from "../components/FaqSection.astro";
+import RelatedTools from "../components/RelatedTools.astro";
+import { toFaqJsonLd } from "../lib/site";
+
+const faqs = [
+  { q: "Which formats can I convert between?", a: "Upload JPG, PNG, WEBP, GIF or BMP and convert to JPG, PNG or WEBP. HEIC and SVG conversions are on the roadmap." },
+  { q: "Will converting to JPG lose transparency?", a: "Yes — JPG has no transparency channel, so a transparent background is filled white. Use PNG or WEBP to keep transparency." },
+];
+---
+
+<BaseLayout
+  title="Convert Image Online Free — JPG, PNG, WEBP | realfileeditor"
+  description="Convert images between JPG, PNG and WEBP online for free, right in your browser."
+  path="/convert-image"
+  jsonLd={toFaqJsonLd(faqs)}
+>
+  <section class="mx-auto max-w-3xl px-5 pt-14 pb-6 text-center">
+    <p class="font-mono text-xs uppercase tracking-wider text-[var(--accent)] mb-3">Free · No sign-up</p>
+    <h1 class="font-display text-4xl md:text-5xl font-semibold tracking-tight">Convert an image format</h1>
+    <p class="mt-4 text-[var(--fg-muted)] text-lg">JPG, PNG or WEBP in, whichever format you need out.</p>
+  </section>
+
+  <section class="mx-auto max-w-2xl px-5 pb-16">
+    <ConvertImageTool client:load />
+  </section>
+
+  <FaqSection faqs={faqs} title="Convert Image — FAQ" />
+  <RelatedTools slugs={["compress-image", "compress-pdf", "merge-pdf"]} />
+</BaseLayout>

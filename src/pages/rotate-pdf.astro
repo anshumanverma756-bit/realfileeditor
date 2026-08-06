@@ -1,0 +1,32 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import RotatePdfTool from "../components/RotatePdfTool";
+import FaqSection from "../components/FaqSection.astro";
+import RelatedTools from "../components/RelatedTools.astro";
+import { toFaqJsonLd } from "../lib/site";
+
+const faqs = [
+  { q: "Does rotating a PDF change every page?", a: "Yes, all pages rotate together by the angle you choose. Per-page rotation is on the roadmap." },
+  { q: "Is rotating a PDF free?", a: "Yes, and it runs in your browser with no upload wait." },
+];
+---
+
+<BaseLayout
+  title="Rotate PDF Online Free — realfileeditor"
+  description="Rotate PDF pages 90, 180 or 270 degrees online for free, right in your browser."
+  path="/rotate-pdf"
+  jsonLd={toFaqJsonLd(faqs)}
+>
+  <section class="mx-auto max-w-3xl px-5 pt-14 pb-6 text-center">
+    <p class="font-mono text-xs uppercase tracking-wider text-[var(--accent)] mb-3">Free · No sign-up</p>
+    <h1 class="font-display text-4xl md:text-5xl font-semibold tracking-tight">Rotate a PDF</h1>
+    <p class="mt-4 text-[var(--fg-muted)] text-lg">Fix sideways or upside-down pages in a couple of clicks.</p>
+  </section>
+
+  <section class="mx-auto max-w-2xl px-5 pb-16">
+    <RotatePdfTool client:load />
+  </section>
+
+  <FaqSection faqs={faqs} title="Rotate PDF — FAQ" />
+  <RelatedTools slugs={["compress-pdf", "merge-pdf", "split-pdf"]} />
+</BaseLayout>

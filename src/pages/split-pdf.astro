@@ -1,0 +1,33 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SplitPdfTool from "../components/SplitPdfTool";
+import FaqSection from "../components/FaqSection.astro";
+import RelatedTools from "../components/RelatedTools.astro";
+import { toFaqJsonLd } from "../lib/site";
+
+const faqs = [
+  { q: "Can I pull out just a few pages from a PDF?", a: "Yes — choose \"Extract a range\", enter the first and last page number, and download just that range as a new PDF." },
+  { q: "Can I split a PDF into several equal files?", a: "Choose \"Split every N pages\" and set how many pages each file should contain; you'll get one download per chunk." },
+  { q: "Does splitting reduce file size?", a: "Each split file only contains its own pages, so the total is close to the original size split proportionally — it isn't a compression tool." },
+];
+---
+
+<BaseLayout
+  title="Split PDF Online Free — Extract Pages or Split by Range | realfileeditor"
+  description="Split a PDF online for free — extract a page range or split every N pages into separate files. Runs in your browser."
+  path="/split-pdf"
+  jsonLd={toFaqJsonLd(faqs)}
+>
+  <section class="mx-auto max-w-3xl px-5 pt-14 pb-6 text-center">
+    <p class="font-mono text-xs uppercase tracking-wider text-[var(--accent)] mb-3">Free · No sign-up</p>
+    <h1 class="font-display text-4xl md:text-5xl font-semibold tracking-tight">Split a PDF into pieces</h1>
+    <p class="mt-4 text-[var(--fg-muted)] text-lg">Pull out a page range, or break a long PDF into equal chunks — pick what fits.</p>
+  </section>
+
+  <section class="mx-auto max-w-2xl px-5 pb-16">
+    <SplitPdfTool client:load />
+  </section>
+
+  <FaqSection faqs={faqs} title="Split PDF — FAQ" />
+  <RelatedTools slugs={["compress-pdf", "merge-pdf", "convert-image"]} />
+</BaseLayout>

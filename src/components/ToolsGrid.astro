@@ -1,0 +1,39 @@
+---
+import { TOOLS, type ToolCategory } from "../lib/site";
+
+const groups: { id: string; category: ToolCategory; title: string; note: string }[] = [
+  { id: "pdf-tools", category: "pdf", title: "PDF tools", note: "01" },
+  { id: "image-tools", category: "image", title: "Image tools", note: "02" },
+  { id: "document-tools", category: "document", title: "Document tools", note: "03" },
+];
+---
+
+{groups.map((group) => {
+  const tools = TOOLS.filter((t) => t.category === group.category);
+  return (
+    <section id={group.id} class="mx-auto max-w-6xl px-5 py-14 scroll-mt-20">
+      <div class="flex items-baseline gap-3 mb-8">
+        <span class="font-mono text-xs text-[var(--accent)]">{group.note}</span>
+        <h2 class="font-display text-2xl md:text-3xl font-semibold">{group.title}</h2>
+        <span class="tick-rule flex-1 hidden sm:block"></span>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {tools.map((tool) => (
+          <a
+            href={tool.built ? `/${tool.slug}` : "#"}
+            aria-disabled={!tool.built}
+            class={`bracket-card p-5 flex flex-col gap-1 transition-transform ${
+              tool.built ? "hover:-translate-y-0.5" : "opacity-60 pointer-events-none"
+            }`}
+          >
+            <div class="flex items-center justify-between">
+              <p class="font-medium">{tool.name}</p>
+              {!tool.built && <span class="font-mono text-[10px] uppercase text-[var(--fg-muted)] border border-[var(--line)] px-1.5 py-0.5">Soon</span>}
+            </div>
+            <p class="text-sm text-[var(--fg-muted)]">{tool.short}</p>
+          </a>
+        ))}
+      </div>
+    </section>
+  );
+})}

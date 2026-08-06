@@ -1,0 +1,28 @@
+---
+import PdfCompressorTool from "./PdfCompressorTool";
+---
+
+<section class="relative overflow-hidden">
+  <div class="mx-auto max-w-6xl px-5 pt-16 md:pt-24 pb-16">
+    <div class="max-w-2xl animate-rise">
+      <p class="font-mono text-xs uppercase tracking-wider text-[var(--accent)] mb-4 flex items-center gap-2">
+        <span class="h-1.5 w-1.5 bg-[var(--accent)] inline-block"></span>
+        No sign-up · files auto-delete
+      </p>
+      <h1 class="font-display text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight leading-[1.05]">
+        Your complete<br />online file toolkit.
+      </h1>
+      <p class="mt-6 text-lg text-[var(--fg-muted)] max-w-xl">
+        Convert, compress, merge and split files in seconds — and instead of guessing at "low, medium,
+        high," you drag a gauge to the exact size you want and we hit it.
+      </p>
+    </div>
+
+    <div class="mt-12 max-w-2xl">
+      <PdfCompressorTool client:load />
+      <p class="mt-4 font-mono text-[11px] text-[var(--fg-muted)]">
+        This is the live Compress PDF tool. Looking for another format? See all tools below.
+      </p>
+    </div>
+  </div>
+</section>

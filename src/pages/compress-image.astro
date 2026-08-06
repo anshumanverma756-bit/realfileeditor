@@ -1,0 +1,33 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ImageCompressorTool from "../components/ImageCompressorTool";
+import FaqSection from "../components/FaqSection.astro";
+import RelatedTools from "../components/RelatedTools.astro";
+import { toFaqJsonLd } from "../lib/site";
+
+const faqs = [
+  { q: "How do I compress an image to a specific file size?", a: "Drop the image in, drag the gauge to the size you want, and press compress — the tool iterates quality and dimensions until it lands at or under that target." },
+  { q: "Which image formats can I compress?", a: "JPG, PNG, WEBP, GIF, BMP and TIFF." },
+  { q: "Will compression change the image dimensions?", a: "Only if needed to reach a very small target — the tool prefers lowering quality first and only reduces dimensions when quality alone can't hit the target." },
+];
+---
+
+<BaseLayout
+  title="Compress Image to Exact Size Online Free — realfileeditor"
+  description="Compress JPG, PNG, WEBP, GIF, BMP and TIFF images online for free. Choose the exact target file size on a gauge instead of a quality preset."
+  path="/compress-image"
+  jsonLd={toFaqJsonLd(faqs)}
+>
+  <section class="mx-auto max-w-3xl px-5 pt-14 pb-6 text-center">
+    <p class="font-mono text-xs uppercase tracking-wider text-[var(--accent)] mb-3">Free · No sign-up</p>
+    <h1 class="font-display text-4xl md:text-5xl font-semibold tracking-tight">Compress an image to an exact size</h1>
+    <p class="mt-4 text-[var(--fg-muted)] text-lg">Set your target in KB or MB and let the gauge do the work — no more guessing at quality sliders.</p>
+  </section>
+
+  <section class="mx-auto max-w-2xl px-5 pb-16">
+    <ImageCompressorTool client:load />
+  </section>
+
+  <FaqSection faqs={faqs} title="Compress Image — FAQ" />
+  <RelatedTools slugs={["compress-pdf", "convert-image", "merge-pdf"]} />
+</BaseLayout>

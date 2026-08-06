@@ -1,0 +1,53 @@
+---
+const columns = [
+  {
+    title: "PDF",
+    links: [
+      { href: "/compress-pdf", label: "Compress PDF" },
+      { href: "/merge-pdf", label: "Merge PDF" },
+      { href: "/split-pdf", label: "Split PDF" },
+    ],
+  },
+  {
+    title: "Image",
+    links: [
+      { href: "/compress-image", label: "Compress Image" },
+      { href: "/convert-image", label: "Convert Image" },
+    ],
+  },
+  {
+    title: "Company",
+    links: [
+      { href: "/#pricing", label: "Pricing" },
+      { href: "/#faq", label: "FAQ" },
+    ],
+  },
+];
+---
+
+<footer class="border-t border-[var(--line)] mt-24">
+  <div class="mx-auto max-w-6xl px-5 py-14 grid grid-cols-2 md:grid-cols-5 gap-10">
+    <div class="col-span-2">
+      <span class="font-display font-semibold text-[15px]">realfileeditor</span>
+      <p class="mt-3 text-sm text-[var(--fg-muted)] max-w-xs">
+        A precision toolkit for PDFs, images and documents — you set the target, we hit it.
+      </p>
+    </div>
+    {columns.map((col) => (
+      <div>
+        <p class="font-mono text-xs uppercase tracking-wider text-[var(--fg-muted)] mb-3">{col.title}</p>
+        <ul class="space-y-2">
+          {col.links.map((l) => (
+            <li><a href={l.href} class="text-sm hover:text-[var(--accent)] transition-colors">{l.label}</a></li>
+          ))}
+        </ul>
+      </div>
+    ))}
+  </div>
+  <div class="border-t border-[var(--line)]">
+    <div class="mx-auto max-w-6xl px-5 py-5 flex flex-col sm:flex-row gap-2 items-center justify-between font-mono text-xs text-[var(--fg-muted)]">
+      <p>© {new Date().getFullYear()} realfileeditor.</p>
+      <p>Files auto-delete after processing.</p>
+    </div>
+  </div>
+</footer>

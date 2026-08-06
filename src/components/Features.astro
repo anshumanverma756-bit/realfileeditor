@@ -1,0 +1,42 @@
+---
+const features = [
+  {
+    title: "Set the size, not a preset",
+    body: "Every compressor drags a gauge to a target file size instead of picking low/medium/high and hoping.",
+  },
+  {
+    title: "Live before/after preview",
+    body: "See the result and an estimated quality score before you commit to a download.",
+  },
+  {
+    title: "Batch workspace",
+    body: "Queue dozens of files, run several operations, and keep working while it processes in the background.",
+  },
+  {
+    title: "Auto-delete on your schedule",
+    body: "Pick 30 minutes, 1 hour, 24 hours or 7 days — files are wiped automatically after that.",
+  },
+  {
+    title: "Smart history",
+    body: "Re-download or duplicate any past job without re-uploading the original file.",
+  },
+  {
+    title: "Built for keyboards",
+    body: "Every tool, including the size gauge, is fully operable without a mouse.",
+  },
+];
+---
+
+<section class="mx-auto max-w-6xl px-5 py-16">
+  <div class="flex items-baseline gap-3 mb-10">
+    <h2 class="font-display text-2xl md:text-3xl font-semibold">Built to be different, not just another clone</h2>
+  </div>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-[var(--line)] border border-[var(--line)]">
+    {features.map((f) => (
+      <div class="bg-[var(--bg)] p-6">
+        <p class="font-medium mb-1.5">{f.title}</p>
+        <p class="text-sm text-[var(--fg-muted)] leading-relaxed">{f.body}</p>
+      </div>
+    ))}
+  </div>
+</section>

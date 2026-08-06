@@ -1,0 +1,164 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------
+   realfileeditor — design tokens
+   Direction: "precision instrument for files" — a calibrated
+   ruler/gauge system, not a generic SaaS gradient page.
+   Light = drafting paper. Dark = instrument panel at night.
+----------------------------------------------------------------- */
+
+@theme {
+  --font-display: "Space Grotesk", "Space Grotesk Fallback", sans-serif;
+  --font-body: "Inter", "Inter Fallback", sans-serif;
+  --font-mono: "IBM Plex Mono", "IBM Plex Mono Fallback", monospace;
+
+  --color-paper: #f3f4f0;
+  --color-paper-raised: #fbfbf9;
+  --color-ink: #12151b;
+  --color-ink-soft: #2a2f3a;
+  --color-line: #cdd1c6;
+  --color-line-dark: #363c48;
+
+  --color-blueprint: #1f4fff;
+  --color-blueprint-dim: #eef1ff;
+  --color-signal: #e69220;
+  --color-signal-dim: #fbead2;
+  --color-success: #1e8e5a;
+  --color-success-dim: #e4f4ec;
+  --color-danger: #d1453b;
+
+  --animate-tick-in: tick-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-rise: rise 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+    --bg: var(--color-paper);
+    --bg-raised: var(--color-paper-raised);
+    --fg: var(--color-ink);
+    --fg-muted: #5b6152;
+    --line: var(--color-line);
+    --accent: var(--color-blueprint);
+    --accent-dim: var(--color-blueprint-dim);
+  }
+
+  :root.dark {
+    color-scheme: dark;
+    --bg: #0d0f14;
+    --bg-raised: #171a21;
+    --fg: #eceef2;
+    --fg-muted: #9aa0ab;
+    --line: var(--color-line-dark);
+    --accent: #6e8fff;
+    --accent-dim: #1a2140;
+  }
+
+  html {
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--fg);
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 48px 48px;
+    background-position: -1px -1px;
+    background-attachment: fixed;
+    opacity: 1;
+  }
+
+  .dark body {
+    background-image:
+      linear-gradient(color-mix(in srgb, var(--line) 55%, transparent) 1px, transparent 1px),
+      linear-gradient(90deg, color-mix(in srgb, var(--line) 55%, transparent) 1px, transparent 1px);
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+  }
+}
+
+@layer components {
+  /* Corner-bracket card, like a viewfinder registration mark */
+  .bracket-card {
+    position: relative;
+    background: var(--bg-raised);
+    border: 1px solid var(--line);
+  }
+  .bracket-card::before,
+  .bracket-card::after {
+    content: "";
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border: 2px solid var(--accent);
+    opacity: 0.55;
+  }
+  .bracket-card::before {
+    top: -1px;
+    left: -1px;
+    border-right: none;
+    border-bottom: none;
+  }
+  .bracket-card::after {
+    bottom: -1px;
+    right: -1px;
+    border-left: none;
+    border-top: none;
+  }
+
+  .tick-rule {
+    background-image: repeating-linear-gradient(
+      90deg,
+      var(--line) 0,
+      var(--line) 1px,
+      transparent 1px,
+      transparent 8px
+    );
+    height: 8px;
+  }
+
+  .mono-num {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@keyframes tick-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

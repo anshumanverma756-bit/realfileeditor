@@ -1,0 +1,19 @@
+---
+const quotes = [
+  { text: "I needed a PDF under 2 MB for a job application portal. The gauge got it there in one try — no trial and error.", name: "Priya S.", role: "Product designer" },
+  { text: "We batch-compress a few hundred product photos every week. The target-size slider alone saved us from writing our own script.", name: "Marcus T.", role: "E-commerce ops" },
+  { text: "Finally a compressor that tells you the size you'll get before you download, not after.", name: "Aiko N.", role: "Freelance editor" },
+];
+---
+
+<section class="mx-auto max-w-6xl px-5 py-16">
+  <h2 class="font-display text-2xl md:text-3xl font-semibold mb-10">People who set the target once and never look back</h2>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+    {quotes.map((q) => (
+      <figure class="bracket-card p-6">
+        <blockquote class="text-sm leading-relaxed">"{q.text}"</blockquote>
+        <figcaption class="mt-4 font-mono text-xs text-[var(--fg-muted)]">{q.name} · {q.role}</figcaption>
+      </figure>
+    ))}
+  </div>
+</section>
