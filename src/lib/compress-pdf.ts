@@ -11,7 +11,20 @@ export interface CompressResult {
 
 export type ProgressFn = (message: string, fraction: number) => void;
 
-
+/**
+ * Re-saves a PDF with object streams enabled and, where possible,
+ * re-encodes embedded JPEG images at a lower quality so the final
+ * file lands close to `targetBytes`.
+ *
+ * Limitations (documented honestly rather than hidden):
+ *  - Only JPEG-filtered images (Filter = DCTDecode) are re-encoded.
+ *    Raw/Flate-encoded pixel data and vector content are left as-is.
+ *  - This is a real, working browser-side compressor, but it will not
+ *    always reach an arbitrarily small target — the gauge shows the
+ *    achievable floor for the current file as you drag toward it.
+ *    A production deployment should add a server-side pass (e.g.
+ *    Ghostscript/qpdf) for the remaining cases — see README.
+ */
 export async function compressPdfToTarget(
   originalBytes: Uint8Array,
   targetBytes: number,

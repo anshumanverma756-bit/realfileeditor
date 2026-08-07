@@ -4,20 +4,52 @@ import AllToolsMenu from "./AllToolsMenu.astro";
 import LanguageSwitcher from "./LanguageSwitcher.astro";
 ---
 
-<header class="sticky top-0 z-40 border-b border-[var(--line)] bg-[var(--bg)]/85 backdrop-blur">
-  <div class="mx-auto max-w-6xl px-5 h-16 flex items-center justify-between gap-4">
+<header
+  class="sticky top-0 z-40 border-b border-(--line) bg-(--bg)/85 backdrop-blur"
+>
+  <div
+    class="mx-auto max-w-6xl px-5 h-16 flex items-center justify-between gap-4"
+  >
     <a href="/" class="flex items-center gap-2 group shrink-0">
-      <span class="grid place-items-center h-8 w-8 border border-[var(--accent)] text-[var(--accent)] font-mono text-xs">RF</span>
-      <span class="font-display font-semibold text-[15px] tracking-tight">realfileeditor</span>
+      <span
+        class="grid place-items-center h-8 w-8 border border-(--accent) text-(--accent) font-mono text-xs"
+        <span
+        class="font-display font-semibold text-[15px] tracking-tight"
+        >realfileeditor</span
+      >
     </a>
 
-    <nav class="hidden md:flex items-center gap-1 font-mono text-[13px] text-[var(--fg-muted)]">
-      <a href="/compress-pdf" class="h-9 px-3 inline-flex items-center hover:text-[var(--fg)] transition-colors">Compress PDF</a>
-      <a href="/merge-pdf" class="h-9 px-3 inline-flex items-center hover:text-[var(--fg)] transition-colors">Merge PDF</a>
-      <a href="/split-pdf" class="h-9 px-3 inline-flex items-center hover:text-[var(--fg)] transition-colors">Split PDF</a>
+    <nav
+      class="hidden md:flex items-center gap-1 font-mono text-[13px] text-(--fg-muted)"
+    >
+      <a
+        href="/compress-pdf"
+        class="h-9 px-3 inline-flex items-center hover:text-(--fg) transition-colors"
+        >Compress PDF</a
+      >
+      <a
+        href="/merge-pdf"
+        class="h-9 px-3 inline-flex items-center hover:text-(--fg) transition-colors"
+        >Merge PDF</a
+      >
+      <a
+        href="/split-pdf"
+        class="h-9 px-3 inline-flex items-center hover:text-(--fg) transition-colors"
+        >Split PDF</a
+      >
       <AllToolsMenu />
-      <a href="/about" data-i18n="nav.about" class="h-9 px-3 inline-flex items-center hover:text-[var(--fg)] transition-colors">About</a>
-      <a href="/contact" data-i18n="nav.contact" class="h-9 px-3 inline-flex items-center hover:text-[var(--fg)] transition-colors">Contact</a>
+      <a
+        href="/about"
+        data-i18n="nav.about"
+        class="h-9 px-3 inline-flex items-center hover:text-(--fg) transition-colors"
+        >About</a
+      >
+      <a
+        href="/contact"
+        data-i18n="nav.contact"
+        class="h-9 px-3 inline-flex items-center hover:text-(--fg) transition-colors"
+        >Contact</a
+      >
     </nav>
 
     <div class="flex items-center gap-2 md:gap-3 shrink-0">
@@ -28,7 +60,7 @@ import LanguageSwitcher from "./LanguageSwitcher.astro";
       <a
         href="/compress-pdf"
         data-i18n="nav.cta"
-        class="hidden sm:inline-flex items-center h-9 px-4 bg-[var(--accent)] text-white text-[13px] font-medium hover:opacity-90 transition-opacity whitespace-nowrap"
+        class="hidden sm:inline-flex items-center h-9 px-4 bg-(--accent) text-white text-[13px] font-medium hover:opacity-90 transition-opacity whitespace-nowrap"
       >
         Open a tool
       </a>

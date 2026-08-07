@@ -30,7 +30,7 @@ export const TOOLS: Tool[] = [
   { slug: "ocr-pdf", name: "OCR PDF", short: "Turn scanned pages into searchable text.", category: "pdf" },
   { slug: "pdf-to-word", name: "PDF to Word", short: "Editable .docx from any PDF.", category: "pdf" },
   { slug: "pdf-to-excel", name: "PDF to Excel", short: "Pull tables into a spreadsheet.", category: "pdf" },
-  { slug: "pdf-to-jpg", name: "PDF to JPG", short: "Export every page as an image.", category: "pdf", built: true },
+  { slug: "pdf-to-jpg", name: "PDF to JPG", short: "Export every page as an image.", category: "pdf" },
   { slug: "word-to-pdf", name: "Word to PDF", short: "Turn a .docx into a shareable PDF.", category: "document" },
   // Image
   { slug: "compress-image", name: "Compress Image", short: "Dial a photo down to a target size.", category: "image", built: true },
@@ -38,8 +38,6 @@ export const TOOLS: Tool[] = [
   { slug: "convert-image", name: "Convert Image", short: "JPG, PNG, WEBP, GIF, BMP, TIFF, HEIC.", category: "image", built: true },
   { slug: "remove-background", name: "Remove Background", short: "Cut a subject out cleanly.", category: "image" },
   { slug: "crop-image", name: "Crop Image", short: "Frame exactly what matters.", category: "image" },
-  // Document / general
-  { slug: "zip-files", name: "Zip Files", short: "Bundle and compress files into a .zip.", category: "document", built: true },
 ];
 
 export interface Faq {
@@ -62,7 +60,7 @@ export const COMPRESS_PDF_FAQS: Faq[] = [
   },
   {
     q: "How can I compress a PDF online for free?",
-    a: "Compressing a PDF on realfileeditor is free with no sign-up: upload the file, set your target size on the slider, and download the result.",
+    a: "Compressing a PDF on realfileeditor is free with no sign-up: upload the file, set your target size on the slider, and download the result. Large batches and priority processing are part of the paid plan, but single-file compression stays free.",
   },
   {
     q: "How do I compress a PDF file to a specific size, like Adobe's tool does?",
@@ -105,7 +103,7 @@ export const HOME_COMPRESS_FAQS: Faq[] = [
   },
   {
     q: "Is there a free way to compress a PDF file?",
-    a: "Yes — compressing a PDF file on realfileeditor is free, with no watermark and no account required.",
+    a: "Yes — compressing a single PDF file on realfileeditor is free, with no watermark and no account. Higher volumes and batch jobs live on the paid plan.",
   },
   {
     q: "How is this different from Adobe's compress PDF tool?",
@@ -116,7 +114,7 @@ export const HOME_COMPRESS_FAQS: Faq[] = [
 export const GLOBAL_FAQS: Faq[] = [
   {
     q: "Is realfileeditor really free to use?",
-    a: "Yes. Every tool on realfileeditor — the file editor and the compressor — is free to use, with no account and no watermark on your files.",
+    a: "Core conversion, compression, merging and splitting are free for single files with no account required. A paid plan removes daily limits and adds batch processing, cloud storage and priority speed.",
   },
   {
     q: "Are my files deleted after processing?",
@@ -124,56 +122,6 @@ export const GLOBAL_FAQS: Faq[] = [
   },
   {
     q: "Which file types are supported?",
-    a: "PDF, PNG, JPG, JPEG, WEBP, SVG, GIF, BMP, TIFF, HEIC, DOCX, PPTX, XLSX, TXT and HTML, across editing, conversion, compression, merging and splitting.",
-  },
-];
-
-/**
- * Homepage FAQ copy targeting the "file editor" keyword cluster:
- *   file editor / pdf file editor / free pdf file editor /
- *   free file editor / file editor online / adobe file editor
- *
- * Note: a few keywords in the supplied research (audio/mp3/wav file
- * editor, stl file editor, psd file editor, json file editor) describe
- * formats this toolkit doesn't handle. Rather than target those with
- * content the tool can't back up, this FAQ sticks to the document,
- * PDF and image formats realfileeditor actually supports — see the
- * README for the reasoning.
- */
-export const FILE_EDITOR_FAQS: Faq[] = [
-  {
-    q: "Is there a free online file editor for PDFs?",
-    a: "Yes — realfileeditor's PDF tools (compress, merge, split, rotate, watermark, convert to JPG) work directly in your browser, free, with no account and no software to install.",
-  },
-  {
-    q: "Can I edit a PDF file online without Adobe?",
-    a: "Yes. realfileeditor covers the everyday PDF edits — merging, splitting, rotating, watermarking and compressing to an exact size — without an Adobe subscription. Full text editing inside a PDF is on the roadmap.",
-  },
-  {
-    q: "Does the file editor work on any device?",
-    a: "Yes — it runs in the browser on desktop, laptop, tablet or phone, and doesn't require installing an app.",
-  },
-];
-
-/**
- * FAQ copy targeting the "file compressor" keyword cluster:
- *   free file compressor / zip file compressor / discord file compressor
- *
- * Note: mp4/video compression and true .zip re-compression of already
- * packed archives aren't built yet — seen honestly in the FAQ below
- * rather than implied.
- */
-export const FILE_COMPRESSOR_FAQS: Faq[] = [
-  {
-    q: "What's a free file compressor I can use online?",
-    a: "realfileeditor compresses PDFs and images for free, right in your browser, and also bundles multiple files into a single .zip with the Zip Files tool.",
-  },
-  {
-    q: "How do I compress a file to fit Discord's upload limit?",
-    a: "Use the compress PDF or compress image tool and drag the gauge to just under your server's upload limit (commonly 10–50 MB). Video/mp4 compression isn't supported yet.",
-  },
-  {
-    q: "How do I make a .zip file smaller?",
-    a: "A .zip is already compressed, so re-zipping rarely shrinks it further. For a smaller download, compress the individual PDFs or images to a target size first, then bundle them with the Zip Files tool.",
+    a: "PDF, PNG, JPG, JPEG, WEBP, SVG, GIF, BMP, TIFF, HEIC, DOCX, PPTX, XLSX, TXT and HTML, across conversion, compression, merging and splitting.",
   },
 ];

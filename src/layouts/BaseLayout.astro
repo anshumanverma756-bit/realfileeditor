@@ -2,9 +2,7 @@
 import "../styles/global.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import GoogleAnalytics from "../components/GoogleAnalytics.astro";
 import { THEME_INIT_SCRIPT } from "../lib/theme-init";
-import { buildI18nScript } from "../lib/i18n-script";
 import { SITE } from "../lib/site";
 
 interface Props {
@@ -36,14 +34,10 @@ const jsonLdList = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={SITE.name} />
-    <meta property="og:locale" content="en_US" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImage} />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content={`${SITE.name} — ${SITE.tagline}`} />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -58,13 +52,13 @@ const jsonLdList = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
       rel="stylesheet"
     />
 
-    {jsonLdList.map((block) => (
-      <script type="application/ld+json" set:html={JSON.stringify(block)} />
-    ))}
+    {
+      jsonLdList.map((block) => (
+        <script type="application/ld+json" set:html={JSON.stringify(block)} />
+      ))
+    }
 
     <script set:html={THEME_INIT_SCRIPT} />
-    <script set:html={buildI18nScript()} />
-    <GoogleAnalytics />
   </head>
   <body class="min-h-screen flex flex-col antialiased">
     <Header />

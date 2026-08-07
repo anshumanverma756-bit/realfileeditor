@@ -39,31 +39,97 @@ const columns = [
 ];
 ---
 
-<footer class="border-t border-[var(--line)] mt-24">
-  <div class="mx-auto max-w-6xl px-5 py-14 grid grid-cols-2 md:grid-cols-6 gap-10">
+<footer class="border-t border-(--line) mt-24">
+  <div
+    class="mx-auto max-w-6xl px-5 py-14 grid grid-cols-2 md:grid-cols-6 gap-10"
+  >
     <div class="col-span-2">
       <span class="font-display font-semibold text-[15px]">realfileeditor</span>
-      <p data-i18n="footer.tagline" class="mt-3 text-sm text-[var(--fg-muted)] max-w-xs">
-        A precision toolkit for PDFs, images and documents — you set the target, we hit it.
+      <p
+        data-i18n="footer.tagline"
+        class="mt-3 text-sm text-(--fg-muted) max-w-xs"
+      >
+        A precision toolkit for PDFs, images and documents — you set the target,
+        we hit it.
       </p>
       <div class="mt-5 lg:hidden">
         <LanguageSwitcher />
       </div>
     </div>
-    {columns.map((col) => (
-      <div>
-        <p class="font-mono text-xs uppercase tracking-wider text-[var(--fg-muted)] mb-3">{col.title}</p>
-        <ul class="space-y-2">
-          {col.links.map((l) => (
-            <li><a href={l.href} class="text-sm hover:text-[var(--accent)] transition-colors">{l.label}</a></li>
-          ))}
-        </ul>
-      </div>
-    ))}
+    {
+      columns.map((col) => (
+        <div>
+          <p class="font-mono text-xs uppercase tracking-wider text-(--fg-muted) mb-3">
+            {col.title}
+          </p>
+          <ul class="space-y-2">
+            {col.links.map((l) => (
+              <li>
+                <a
+                  href={l.href}
+                  class="text-sm hover:text-(--accent) transition-colors"
+                >
+                  {l.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
   </div>
-  <div class="border-t border-[var(--line)]">
-    <div class="mx-auto max-w-6xl px-5 py-5 flex flex-col sm:flex-row gap-2 items-center justify-between font-mono text-xs text-[var(--fg-muted)]">
-      <p>© {new Date().getFullYear()} realfileeditor. <span data-i18n="footer.rights">All rights reserved.</span></p>
+  <div class="border-t border-(--line)">
+    <div
+      class="mx-auto max-w-6xl px-5 py-5 flex flex-col sm:flex-row gap-2 items-center justify-between font-mono text-xs text-(--fg-muted)"
+    >
+      <p>
+        © {new Date().getFullYear()} realfileeditor. <span
+          data-i18n="footer.rights">All rights reserved.</span
+        >
+      </p>
+      <p>Files auto-delete after processing.</p>
+    </div>
+  </div>
+</footer>
+
+<footer class="border-t border-(--line) mt-24">
+  <div
+    class="mx-auto max-w-6xl px-5 py-14 grid grid-cols-2 md:grid-cols-5 gap-10"
+  >
+    <div class="col-span-2">
+      <span class="font-display font-semibold text-[15px]">realfileeditor</span>
+      <p class="mt-3 text-sm text-(--fg-muted) max-w-xs">
+        A precision toolkit for PDFs, images and documents — you set the target,
+        we hit it.
+      </p>
+    </div>
+    {
+      columns.map((col) => (
+        <div>
+          <p class="font-mono text-xs uppercase tracking-wider text-(--fg-muted) mb-3">
+            {col.title}
+          </p>
+          <ul class="space-y-2">
+            {col.links.map((l) => (
+              <li>
+                <a
+                  href={l.href}
+                  class="text-sm hover:text-(--accent) transition-colors"
+                >
+                  {l.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+  </div>
+  <div class="border-t border-(--line)">
+    <div
+      class="mx-auto max-w-6xl px-5 py-5 flex flex-col sm:flex-row gap-2 items-center justify-between font-mono text-xs text-(--fg-muted)"
+    >
+      <p>© {new Date().getFullYear()} realfileeditor.</p>
       <p>Files auto-delete after processing.</p>
     </div>
   </div>
