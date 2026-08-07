@@ -1,0 +1,27 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ZipFilesTool from "../components/ZipFilesTool";
+import FaqSection from "../components/FaqSection.astro";
+import RelatedTools from "../components/RelatedTools.astro";
+import { FILE_COMPRESSOR_FAQS, toFaqJsonLd } from "../lib/site";
+---
+
+<BaseLayout
+  title="Zip File Compressor Online Free — Bundle Any Files | realfileeditor"
+  description="Bundle any mix of files into a single .zip online, free, right in your browser — a straightforward free file compressor for sending or storing multiple files at once."
+  path="/zip-files"
+  jsonLd={toFaqJsonLd(FILE_COMPRESSOR_FAQS)}
+>
+  <section class="mx-auto max-w-3xl px-5 pt-14 pb-6 text-center">
+    <p class="font-mono text-xs uppercase tracking-wider text-[var(--accent)] mb-3">Free · No sign-up</p>
+    <h1 class="font-display text-4xl md:text-5xl font-semibold tracking-tight">Zip your files together</h1>
+    <p class="mt-4 text-[var(--fg-muted)] text-lg">Drop in any mix of PDFs, images or documents and download one .zip — a quick free file compressor for sending a batch at once.</p>
+  </section>
+
+  <section class="mx-auto max-w-2xl px-5 pb-16">
+    <ZipFilesTool client:load />
+  </section>
+
+  <FaqSection faqs={FILE_COMPRESSOR_FAQS} title="Zip files & compress files — FAQ" />
+  <RelatedTools slugs={["compress-pdf", "compress-image", "merge-pdf"]} />
+</BaseLayout>

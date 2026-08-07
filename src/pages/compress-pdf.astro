@@ -1,0 +1,64 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PdfCompressorTool from "../components/PdfCompressorTool";
+import FaqSection from "../components/FaqSection.astro";
+import RelatedTools from "../components/RelatedTools.astro";
+import { COMPRESS_PDF_FAQS, toFaqJsonLd, SITE } from "../lib/site";
+
+const title = "Compress PDF Online Free — Choose the Exact File Size | realfileeditor";
+const description =
+  "Compress a PDF online for free. Drag a gauge to the exact file size you want instead of a low/medium/high preset — works right in your browser, no upload queue.";
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  path="/compress-pdf"
+  jsonLd={[
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      name: "Compress PDF — realfileeditor",
+      applicationCategory: "Utility",
+      operatingSystem: "Any",
+      url: `${SITE.url}/compress-pdf`,
+      offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+    },
+    toFaqJsonLd(COMPRESS_PDF_FAQS),
+  ]}
+>
+  <section class="mx-auto max-w-3xl px-5 pt-14 pb-6 text-center">
+    <p class="font-mono text-xs uppercase tracking-wider text-[var(--accent)] mb-3">Free · No sign-up · Runs in your browser</p>
+    <h1 class="font-display text-4xl md:text-5xl font-semibold tracking-tight">Compress a PDF to the exact size you need</h1>
+    <p class="mt-4 text-[var(--fg-muted)] text-lg">
+      Most compress-PDF tools give you "low, medium, high" and hope for the best. Drag the gauge below to a target
+      file size instead — in KB or MB — and the compressor works toward that number.
+    </p>
+  </section>
+
+  <section class="mx-auto max-w-2xl px-5 pb-16">
+    <PdfCompressorTool client:load />
+  </section>
+
+  <section class="mx-auto max-w-3xl px-5 py-14">
+    <h2 class="font-display text-2xl font-semibold mb-6">How to compress a PDF file</h2>
+    <ol class="space-y-4">
+      <li class="flex gap-4">
+        <span class="font-mono text-sm text-[var(--accent)]">01</span>
+        <p class="text-sm text-[var(--fg-muted)]"><span class="text-[var(--fg)] font-medium">Upload your PDF.</span> Drag it into the box above or choose it from your device — nothing leaves your browser until you press compress.</p>
+      </li>
+      <li class="flex gap-4">
+        <span class="font-mono text-sm text-[var(--accent)]">02</span>
+        <p class="text-sm text-[var(--fg-muted)]"><span class="text-[var(--fg)] font-medium">Set your target size.</span> Drag the gauge to the file size you need — for an email attachment limit, an upload portal, or just a smaller file.</p>
+      </li>
+      <li class="flex gap-4">
+        <span class="font-mono text-sm text-[var(--accent)]">03</span>
+        <p class="text-sm text-[var(--fg-muted)]"><span class="text-[var(--fg)] font-medium">Download the result.</span> Check the before/after size and download — or adjust the gauge and compress again.</p>
+      </li>
+    </ol>
+  </section>
+
+  <FaqSection faqs={COMPRESS_PDF_FAQS} title="How to compress a PDF — FAQ" />
+
+  <RelatedTools slugs={["merge-pdf", "split-pdf", "compress-image"]} />
+</BaseLayout>

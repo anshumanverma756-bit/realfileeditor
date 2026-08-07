@@ -1,0 +1,21 @@
+---
+import { TOOLS } from "../lib/site";
+
+interface Props {
+  slugs: string[];
+}
+const { slugs } = Astro.props;
+const tools = TOOLS.filter((t) => slugs.includes(t.slug));
+---
+
+<section class="mx-auto max-w-3xl px-5 py-14">
+  <p class="font-mono text-xs uppercase tracking-wider text-[var(--fg-muted)] mb-4">Related tools</p>
+  <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+    {tools.map((tool) => (
+      <a href={tool.built ? `/${tool.slug}` : "/"} class="bracket-card p-4 hover:-translate-y-0.5 transition-transform">
+        <p class="font-medium text-sm">{tool.name}</p>
+        <p class="text-xs text-[var(--fg-muted)] mt-1">{tool.short}</p>
+      </a>
+    ))}
+  </div>
+</section>

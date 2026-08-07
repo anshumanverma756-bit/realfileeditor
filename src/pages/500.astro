@@ -1,0 +1,26 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Something went wrong — realfileeditor"
+  description="realfileeditor hit an unexpected error. Try again in a moment."
+  path="/500"
+  noindex={true}
+>
+  <section class="mx-auto max-w-xl px-5 py-24 text-center">
+    <p class="font-mono text-6xl font-semibold text-[var(--color-danger)] mb-4">500</p>
+    <h1 class="font-display text-3xl font-semibold mb-3">Something went wrong on our end</h1>
+    <p class="text-[var(--fg-muted)] mb-8">
+      Try again in a moment. If this keeps happening, let us know what you were doing when it broke.
+    </p>
+    <div class="flex flex-wrap gap-3 justify-center">
+      <a href="/" class="inline-flex items-center h-11 px-8 bg-[var(--accent)] text-white text-sm font-medium hover:opacity-90 transition-opacity">
+        Back to home
+      </a>
+      <a href="/contact" class="inline-flex items-center h-11 px-8 border border-[var(--line)] text-sm font-medium hover:border-[var(--accent)] transition-colors">
+        Contact support
+      </a>
+    </div>
+  </section>
+</BaseLayout>

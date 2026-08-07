@@ -1,0 +1,32 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PdfToJpgTool from "../components/PdfToJpgTool";
+import FaqSection from "../components/FaqSection.astro";
+import RelatedTools from "../components/RelatedTools.astro";
+import { toFaqJsonLd } from "../lib/site";
+
+const faqs = [
+  { q: "Does every page become a separate JPG?", a: "Yes — each page renders as its own JPG at 2x resolution for a crisp result, and you can download them individually or all at once as a .zip." },
+  { q: "Is there a page limit?", a: "No hard limit — very long PDFs just take longer to render since everything happens in your browser." },
+];
+---
+
+<BaseLayout
+  title="PDF to JPG Online Free — Convert Every Page to an Image | realfileeditor"
+  description="Convert a PDF to JPG online for free. Every page becomes its own high-resolution image, downloadable individually or as a zip."
+  path="/pdf-to-jpg"
+  jsonLd={toFaqJsonLd(faqs)}
+>
+  <section class="mx-auto max-w-3xl px-5 pt-14 pb-6 text-center">
+    <p class="font-mono text-xs uppercase tracking-wider text-[var(--accent)] mb-3">Free · No sign-up</p>
+    <h1 class="font-display text-4xl md:text-5xl font-semibold tracking-tight">Convert a PDF to JPG</h1>
+    <p class="mt-4 text-[var(--fg-muted)] text-lg">Every page becomes a high-resolution JPG — download one, a few, or all of them zipped together.</p>
+  </section>
+
+  <section class="mx-auto max-w-2xl px-5 pb-16">
+    <PdfToJpgTool client:load />
+  </section>
+
+  <FaqSection faqs={faqs} title="PDF to JPG — FAQ" />
+  <RelatedTools slugs={["compress-pdf", "merge-pdf", "split-pdf"]} />
+</BaseLayout>

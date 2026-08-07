@@ -1,0 +1,44 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import ToolsGrid from "../components/ToolsGrid.astro";
+import Features from "../components/Features.astro";
+import AboutContent from "../components/AboutContent.astro";
+import Testimonials from "../components/Testimonials.astro";
+import FaqSection from "../components/FaqSection.astro";
+import {
+  HOME_COMPRESS_FAQS,
+  FILE_EDITOR_FAQS,
+  FILE_COMPRESSOR_FAQS,
+  GLOBAL_FAQS,
+  toFaqJsonLd,
+  SITE,
+} from "../lib/site";
+
+const faqs = [...HOME_COMPRESS_FAQS, ...FILE_EDITOR_FAQS, ...FILE_COMPRESSOR_FAQS, ...GLOBAL_FAQS];
+---
+
+<BaseLayout
+  title="realfileeditor — Free Online File Editor & File Compressor"
+  description="A free online file editor and file compressor for PDFs, images and documents. Compress, merge, split and convert files — set the exact output file size yourself instead of picking a preset."
+  path="/"
+  jsonLd={[
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      name: SITE.name,
+      url: SITE.url,
+      applicationCategory: "Utility",
+      offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+      description: SITE.description,
+    },
+    toFaqJsonLd(faqs),
+  ]}
+>
+  <Hero />
+  <ToolsGrid />
+  <Features />
+  <Testimonials />
+  <AboutContent />
+  <FaqSection faqs={faqs} title="File editor & file compressor — frequently asked questions" />
+</BaseLayout>

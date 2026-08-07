@@ -1,0 +1,73 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const lastUpdated = "August 2026";
+---
+
+<BaseLayout
+  title="Privacy Policy — realfileeditor"
+  description="How realfileeditor handles your files and data: what's processed in your browser, what's deleted automatically, and what analytics we collect."
+  path="/privacy-policy"
+>
+  <section class="mx-auto max-w-2xl px-5 py-16">
+    <p class="font-mono text-xs uppercase tracking-wider text-[var(--accent)] mb-3">Legal</p>
+    <h1 class="font-display text-4xl font-semibold tracking-tight mb-2">Privacy Policy</h1>
+    <p class="font-mono text-xs text-[var(--fg-muted)] mb-8">Last updated: {lastUpdated}</p>
+
+    <div class="space-y-6 text-sm text-[var(--fg-muted)] leading-relaxed">
+      <div>
+        <h2 class="font-display text-lg text-[var(--fg)] font-semibold mb-2">Your files</h2>
+        <p>
+          The tools on realfileeditor (compress, merge, split, rotate, watermark, convert, zip) process
+          your files directly in your browser using JavaScript. In the current version of the site, files
+          are not uploaded to our servers to perform these operations — they never leave your device
+          during processing. If a future version of a tool requires server-side processing, that will be
+          stated clearly on the tool's page before you use it, and any uploaded file will be deleted
+          automatically on the schedule you choose (as low as 30 minutes).
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-display text-lg text-[var(--fg)] font-semibold mb-2">Analytics</h2>
+        <p>
+          We use Google Analytics to understand which tools and pages are used, so we can prioritize what
+          to build next. Google Analytics uses cookies and may collect information such as your
+          approximate location, device type, and browsing behavior on this site. It does not have access
+          to the contents of files you process. You can opt out using your browser's cookie settings or a
+          browser extension such as Google's Analytics Opt-out Add-on.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-display text-lg text-[var(--fg)] font-semibold mb-2">Cookies &amp; local storage</h2>
+        <p>
+          We use your browser's local storage to remember preferences like light/dark mode and your
+          chosen language. These stay on your device and are not sent to us.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-display text-lg text-[var(--fg)] font-semibold mb-2">Third-party services</h2>
+        <p>
+          Fonts are loaded from Google Fonts, which may log requests including your IP address, per
+          Google's own privacy policy.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-display text-lg text-[var(--fg)] font-semibold mb-2">Changes to this policy</h2>
+        <p>
+          We'll update this page if how we handle data changes, and update the "last updated" date above.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-display text-lg text-[var(--fg)] font-semibold mb-2">Contact</h2>
+        <p>
+          Questions about this policy can go to
+          <a href="mailto:support@realfileeditor.com" class="text-[var(--accent)] underline">support@realfileeditor.com</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

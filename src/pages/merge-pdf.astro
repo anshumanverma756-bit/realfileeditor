@@ -1,0 +1,33 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import MergePdfTool from "../components/MergePdfTool";
+import FaqSection from "../components/FaqSection.astro";
+import RelatedTools from "../components/RelatedTools.astro";
+import { toFaqJsonLd } from "../lib/site";
+
+const faqs = [
+  { q: "Can I choose the order of pages when merging?", a: "Yes — drag each file up or down in the list before merging. They combine in exactly the order shown." },
+  { q: "Is there a limit to how many PDFs I can merge?", a: "The free tool merges as many files as your browser can hold in memory at once, which is comfortably dozens of typical PDFs." },
+  { q: "Does merging compress the output?", a: "No, merging keeps each page as-is. Use the compress PDF tool afterward if the combined file needs to be smaller." },
+];
+---
+
+<BaseLayout
+  title="Merge PDF Files Online Free — realfileeditor"
+  description="Combine multiple PDFs into one file online, free. Drag to reorder before merging — runs in your browser, no upload wait."
+  path="/merge-pdf"
+  jsonLd={toFaqJsonLd(faqs)}
+>
+  <section class="mx-auto max-w-3xl px-5 pt-14 pb-6 text-center">
+    <p class="font-mono text-xs uppercase tracking-wider text-[var(--accent)] mb-3">Free · No sign-up</p>
+    <h1 class="font-display text-4xl md:text-5xl font-semibold tracking-tight">Merge PDF files into one</h1>
+    <p class="mt-4 text-[var(--fg-muted)] text-lg">Drop in as many PDFs as you need, drag them into order, and download one combined file.</p>
+  </section>
+
+  <section class="mx-auto max-w-2xl px-5 pb-16">
+    <MergePdfTool client:load />
+  </section>
+
+  <FaqSection faqs={faqs} title="Merge PDF — FAQ" />
+  <RelatedTools slugs={["compress-pdf", "split-pdf", "convert-image"]} />
+</BaseLayout>

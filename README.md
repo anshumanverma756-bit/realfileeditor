@@ -32,8 +32,21 @@ All of these are real, working, client-side tools — not mockups:
 | `/rotate-pdf` | Rotate every page 90° / 180° / 270°. |
 | `/watermark-pdf` | Stamp diagonal text across every page, with adjustable opacity. |
 | `/convert-image` | Convert between JPG / PNG / WEBP via canvas re-encoding. |
+| `/pdf-to-jpg` | Renders every page as a JPG (via `pdfjs-dist`), downloadable individually or as a `.zip`. |
+| `/zip-files` | Bundles any mix of files into a single `.zip` (via `jszip`) — the site's "free file compressor" tool. |
 
 The homepage embeds the Compress PDF tool directly in the hero.
+
+## Site-wide additions in this pass
+
+- **Mega-menu nav** (`AllToolsMenu.astro`) grouping every tool by category, plus a slimmer top-level nav — replaces the old flat PDF/Image/Document links.
+- **Pricing removed** from the homepage and header/footer nav (`Pricing.astro` is kept in `src/components/` for when you want to reintroduce it — just re-import it in `index.astro`).
+- **Language switcher** (`LanguageSwitcher.astro` + `src/lib/i18n.ts` + `src/lib/i18n-script.ts`): translates the header, hero and footer chrome into English, Hindi, French, Spanish, German and Japanese, auto-detected from the browser and stored in `localStorage`. This is an honest MVP, not full-site translation — see the scope note in `src/lib/i18n.ts` for how to extend it to individual tool pages.
+- **Legal & company pages**: `/about`, `/contact`, `/privacy-policy`, `/terms-and-conditions`, all linked from the footer (visible on every page, including the homepage).
+- **Error pages**: `/404` (Astro serves this automatically for unmatched routes) and `/500`. Note: since this is a static export (`output: "static"`), `/500` won't be triggered automatically by a server error — wire it up via your host's error-page config (e.g. a Netlify `_redirects` rule or a Vercel `error` route) once deployed.
+- **Google Analytics** (`GoogleAnalytics.astro`) wired into `BaseLayout.astro`'s `<head>` with the provided measurement ID (`G-D3Y1VS1XKD`).
+- **Homepage SEO copy** (`AboutContent.astro`): ~650 words targeting the "file editor" / "file compressor" keyword cluster you supplied (file editor, pdf file editor, free file editor, file editor online, free file compressor, zip file compressor, discord file compressor), plus matching FAQ entries in `src/lib/site.ts` (`FILE_EDITOR_FAQS`, `FILE_COMPRESSOR_FAQS`) with `FAQPage` JSON-LD.
+- **Note on "Online Ruler"**: one keyword group you sent referenced "Online Ruler" as the main target term. That doesn't match what this site does (a file editor/compressor), so it wasn't used — targeting it would mean writing content the site can't back up, which hurts SEO rather than helping it. The file-editor/file-compressor keyword list was used instead, since it matches the actual product.
 
 ### Known limitation: PDF compression ceiling
 

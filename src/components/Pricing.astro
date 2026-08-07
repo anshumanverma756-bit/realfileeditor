@@ -1,0 +1,57 @@
+---
+const plans = [
+  {
+    name: "Free",
+    price: "$0",
+    period: "",
+    features: ["Unlimited single-file jobs", "All tools, no watermark", "5 files/day batch limit", "Standard processing speed"],
+    cta: "Start free",
+    highlight: false,
+  },
+  {
+    name: "Pro",
+    price: "$9",
+    period: "/mo",
+    features: ["Unlimited batch processing", "Priority processing queue", "10 GB cloud storage", "Workflow templates"],
+    cta: "Start Pro trial",
+    highlight: true,
+  },
+  {
+    name: "Team",
+    price: "$29",
+    period: "/mo",
+    features: ["Everything in Pro", "5 seats included", "API access", "Shared workspace & history"],
+    cta: "Talk to us",
+    highlight: false,
+  },
+];
+---
+
+<section id="pricing" class="mx-auto max-w-6xl px-5 py-20 scroll-mt-20">
+  <div class="text-center max-w-xl mx-auto mb-12">
+    <p class="font-mono text-xs uppercase tracking-wider text-[var(--accent)] mb-2">Pricing</p>
+    <h2 class="font-display text-3xl md:text-4xl font-semibold">Free for everyday use</h2>
+    <p class="text-[var(--fg-muted)] mt-3">Upgrade only when you need batches, speed or storage.</p>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+    {plans.map((plan) => (
+      <div class={`bracket-card p-7 flex flex-col ${plan.highlight ? "outline outline-2 outline-[var(--accent)]" : ""}`}>
+        <p class="font-mono text-xs uppercase tracking-wider text-[var(--fg-muted)]">{plan.name}</p>
+        <p class="mt-2 font-display text-3xl font-semibold">
+          {plan.price}<span class="text-base font-body text-[var(--fg-muted)]">{plan.period}</span>
+        </p>
+        <ul class="mt-6 space-y-2.5 flex-1">
+          {plan.features.map((f) => (
+            <li class="text-sm flex items-start gap-2">
+              <span class="text-[var(--success)] mt-0.5">✓</span>
+              <span class="text-[var(--fg-muted)]">{f}</span>
+            </li>
+          ))}
+        </ul>
+        <button class={`mt-7 h-10 text-sm font-medium transition-opacity hover:opacity-90 ${plan.highlight ? "bg-[var(--accent)] text-white" : "border border-[var(--line)]"}`}>
+          {plan.cta}
+        </button>
+      </div>
+    ))}
+  </div>
+</section>

@@ -1,0 +1,26 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Page not found — realfileeditor"
+  description="This page doesn't exist. Head back to realfileeditor's file tools."
+  path="/404"
+  noindex={true}
+>
+  <section class="mx-auto max-w-xl px-5 py-24 text-center">
+    <p class="font-mono text-6xl font-semibold text-[var(--accent)] mb-4">404</p>
+    <h1 class="font-display text-3xl font-semibold mb-3">That page took a wrong turn</h1>
+    <p class="text-[var(--fg-muted)] mb-8">
+      The page you're looking for doesn't exist, or the link's out of date. Try one of the tools below.
+    </p>
+    <div class="flex flex-wrap gap-3 justify-center">
+      <a href="/" class="inline-flex items-center h-11 px-8 bg-[var(--accent)] text-white text-sm font-medium hover:opacity-90 transition-opacity">
+        Back to home
+      </a>
+      <a href="/compress-pdf" class="inline-flex items-center h-11 px-8 border border-[var(--line)] text-sm font-medium hover:border-[var(--accent)] transition-colors">
+        Compress a PDF
+      </a>
+    </div>
+  </section>
+</BaseLayout>

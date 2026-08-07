@@ -1,0 +1,39 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Contact realfileeditor"
+  description="Get in touch with the realfileeditor team — support, feedback and press."
+  path="/contact"
+>
+  <section class="mx-auto max-w-2xl px-5 py-16">
+    <p class="font-mono text-xs uppercase tracking-wider text-[var(--accent)] mb-3">Contact</p>
+    <h1 class="font-display text-4xl font-semibold tracking-tight mb-8">Get in touch</h1>
+
+    <div class="space-y-6">
+      <div class="bracket-card p-6">
+        <p class="font-medium mb-1">Support &amp; feedback</p>
+        <p class="text-sm text-[var(--fg-muted)] mb-3">
+          Found a bug, or a tool not behaving the way you expected? Tell us what you were trying to do —
+          it helps more than a screenshot alone.
+        </p>
+        <a href="mailto:support@realfileeditor.com" class="font-mono text-sm text-[var(--accent)] underline">
+          support@realfileeditor.com
+        </a>
+      </div>
+
+      <div class="bracket-card p-6">
+        <p class="font-medium mb-1">Business &amp; press</p>
+        <p class="text-sm text-[var(--fg-muted)] mb-3">Partnerships, integrations, and press inquiries.</p>
+        <a href="mailto:hello@realfileeditor.com" class="font-mono text-sm text-[var(--accent)] underline">
+          hello@realfileeditor.com
+        </a>
+      </div>
+
+      <p class="text-xs text-[var(--fg-muted)] font-mono">
+        We read every message and typically reply within 1–2 business days.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

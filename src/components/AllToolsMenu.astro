@@ -1,0 +1,48 @@
+---
+import { TOOLS, type ToolCategory } from "../lib/site";
+
+const groups: { category: ToolCategory; title: string }[] = [
+  { category: "pdf", title: "PDF" },
+  { category: "image", title: "Image" },
+  { category: "document", title: "Document" },
+];
+---
+
+<details class="relative group">
+  <summary class="list-none cursor-pointer h-9 px-3 inline-flex items-center gap-1.5 border border-transparent hover:border-[var(--line)] font-mono text-[13px] text-[var(--fg-muted)] hover:text-[var(--fg)] transition-colors [&::-webkit-details-marker]:hidden">
+    All tools
+    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+  </summary>
+
+  <div class="absolute left-1/2 -translate-x-1/2 top-[calc(100%+8px)] z-50 w-[min(90vw,640px)] bracket-card p-6 grid grid-cols-1 sm:grid-cols-3 gap-6 shadow-lg">
+    {groups.map((g) => (
+      <div>
+        <p class="font-mono text-[10px] uppercase tracking-wider text-[var(--accent)] mb-3">{g.title}</p>
+        <ul class="space-y-2">
+          {TOOLS.filter((t) => t.category === g.category).map((tool) => (
+            <li>
+              <a
+                href={tool.built ? `/${tool.slug}` : "/#" + g.category + "-tools"}
+                class="text-sm hover:text-[var(--accent)] transition-colors flex items-center gap-1.5"
+              >
+                {tool.name}
+                {!tool.built && <span class="font-mono text-[9px] uppercase text-[var(--fg-muted)] border border-[var(--line)] px-1">Soon</span>}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
+  </div>
+</details>
+
+<script>
+  // Close the dropdown when clicking outside it or choosing a link.
+  document.querySelectorAll("details.group").forEach((el) => {
+    document.addEventListener("click", (e) => {
+      if (!(e.target instanceof Node)) return;
+      if (!el.contains(e.target)) el.removeAttribute("open");
+    });
+    el.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => el.removeAttribute("open")));
+  });
+</script>

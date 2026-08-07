@@ -1,0 +1,38 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="About realfileeditor — Why We Built a File Editor That Asks for the Target Size"
+  description="realfileeditor is a free online file editor and file compressor built around one idea: you should be able to set the exact output size instead of guessing at a preset."
+  path="/about"
+>
+  <section class="mx-auto max-w-2xl px-5 py-16">
+    <p class="font-mono text-xs uppercase tracking-wider text-[var(--accent)] mb-3">About</p>
+    <h1 class="font-display text-4xl font-semibold tracking-tight mb-8">Why we built a file editor that asks for the target size</h1>
+
+    <div class="space-y-5 text-[var(--fg-muted)] leading-relaxed">
+      <p>
+        Most online file editors and file compressors work the same way: you pick "low, medium or high"
+        quality, press a button, and hope the result fits whatever limit you actually needed — an email
+        attachment cap, an upload portal, a Discord server's file-size ceiling. If it doesn't fit, you
+        run the tool again and guess differently.
+      </p>
+      <p>
+        realfileeditor flips that around. Every compressor here starts from the number you actually
+        care about — the file size — and works backward to hit it, instead of starting from a quality
+        preset and leaving the size to chance.
+      </p>
+      <p>
+        We started with PDFs and images because they're the formats people hit size limits with most
+        often, and we built each tool to run entirely in your browser: nothing uploads to a server until
+        you choose to download the result, and processed files are removed automatically afterward.
+      </p>
+      <p>
+        The toolkit is still growing. You can see exactly which tools are live and which are on the way
+        on the homepage — we'd rather ship a smaller set of tools that genuinely work than a long list of
+        placeholders.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
