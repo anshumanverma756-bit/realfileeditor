@@ -34,8 +34,23 @@ All of these are real, working, client-side tools — not mockups:
 | `/convert-image` | Convert between JPG / PNG / WEBP via canvas re-encoding. |
 | `/pdf-to-jpg` | Renders every page as a JPG (via `pdfjs-dist`), downloadable individually or as a `.zip`. |
 | `/zip-files` | Bundles any mix of files into a single `.zip` (via `jszip`) — the site's "free file compressor" tool. |
+| `/organize-pdf` | Drag page thumbnails (rendered via `pdfjs-dist`) to reorder or delete, then rebuilds the PDF with `pdf-lib`. |
+| `/sign-pdf` | Draw a signature on a canvas, choose a page/corner/size, embeds it as a PNG via `pdf-lib`. |
+| `/pdf-to-word` | Extracts the text layer per page (`pdfjs-dist`) into a real, editable `.docx` (via `docx`'s `Packer.toBlob`). Text only — no layout/image reproduction; says so on the page. |
+| `/pdf-to-excel` | Groups text items by position into rows/columns (`pdfjs-dist`) and writes a real `.xlsx`, one sheet per page (via `xlsx`/SheetJS). Works well on simple tables; documented as a heuristic, not true table detection. |
+| `/word-to-pdf` | `mammoth` converts `.docx` → HTML, `jsPDF` + `html2canvas` render that HTML to a PDF. Text/headings/lists/basic formatting only. |
+| `/resize-image` | Canvas resize to exact pixel dimensions or a percentage, with an aspect-ratio lock. |
+| `/remove-background` | Real on-device background removal via `@imgly/background-removal` (WASM/ONNX) — the model downloads once to the browser at runtime; no server involved. |
+
+Every tool listed on the site (`TOOLS` in `src/lib/site.ts`) now has `built: true` — there are no more "Soon" placeholders. Tools that weren't requested for this pass (Protect/Unlock PDF, OCR PDF, Crop Image) were removed from the catalog rather than left as unbuilt promises.
 
 The homepage embeds the Compress PDF tool directly in the hero.
+
+## Bug fix: language switcher not doing anything
+
+**Root cause**: `LanguageSwitcher.astro` is rendered twice per page (desktop header, mobile footer), and both instances used the same `id="lang-select"`. Astro dedupes identical inline component scripts, so the (single) script's `document.getElementById("lang-select")` only ever found the *first* matching element in the DOM — the other dropdown had no listener attached at all, so changing it did nothing.
+
+**Fix**: switched to a shared `class="lang-select"` instead of a duplicate `id`, and the script now uses `querySelectorAll` to wire up *every* instance on the page and keep them in sync (`src/components/LanguageSwitcher.astro`, `src/lib/i18n-script.ts`). Also added a couple more translated landmarks (the "PDF tools / Image tools / Document tools" section headings) so the fix is easy to see working.
 
 ## Site-wide additions in this pass
 
@@ -118,10 +133,10 @@ the interactive part. Reuse `<UploadDrop>`, `<GaugeSlider>` and the
 
 Roughly in priority order for an iLovePDF-scale toolkit:
 
-1. **Remaining PDF tools**: organize/reorder pages, protect/unlock (needs a
-   server — `pdf-lib` cannot encrypt PDFs), sign, OCR, PDF↔Word/Excel/
-   PowerPoint/HTML conversion (all need a backend service; consider
-   LibreOffice headless or a conversion API).
+1. **Remaining conversions**: PowerPoint↔PDF, HTML to PDF, PSD/audio/STL/JSON
+   editors (out of scope for this toolkit — see the homepage SEO copy for
+   why). Protect/Unlock PDF still need a real server, since `pdf-lib`
+   cannot encrypt PDFs client-side.
 2. **Backend**: Node/Express + PostgreSQL/Prisma for accounts, file history,
    collections, sharing links, and the admin panel described in the brief.
    Needed for anything beyond single-file, in-browser processing.

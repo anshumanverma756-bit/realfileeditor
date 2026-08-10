@@ -1,0 +1,33 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import RemoveBackgroundTool from "../components/RemoveBackgroundTool";
+import FaqSection from "../components/FaqSection.astro";
+import RelatedTools from "../components/RelatedTools.astro";
+import { toFaqJsonLd } from "../lib/site";
+
+const faqs = [
+  { q: "Does this upload my photo to a server?", a: "No — the segmentation model downloads to your browser once and every photo you process after that runs locally on your device." },
+  { q: "Why does the first run take longer?", a: "The AI model (a few MB) has to download the first time you use the tool. After that it's cached by your browser and later uses are faster." },
+  { q: "What file do I get back?", a: "A transparent PNG with the background removed, ready to drop onto a new background." },
+];
+---
+
+<BaseLayout
+  title="Remove Background from Image Online Free — AI, In Your Browser | realfileeditor"
+  description="Remove the background from a photo online, free, using on-device AI — nothing uploads to a server."
+  path="/remove-background"
+  jsonLd={toFaqJsonLd(faqs)}
+>
+  <section class="mx-auto max-w-3xl px-5 pt-14 pb-6 text-center">
+    <p class="font-mono text-xs uppercase tracking-wider text-[var(--accent)] mb-3">Free · No sign-up · Runs on-device</p>
+    <h1 class="font-display text-4xl md:text-5xl font-semibold tracking-tight">Remove a photo's background</h1>
+    <p class="mt-4 text-[var(--fg-muted)] text-lg">AI-powered background removal that runs entirely in your browser — your photo never leaves your device.</p>
+  </section>
+
+  <section class="mx-auto max-w-2xl px-5 pb-16">
+    <RemoveBackgroundTool client:load />
+  </section>
+
+  <FaqSection faqs={faqs} title="Remove Background — FAQ" />
+  <RelatedTools slugs={["resize-image", "compress-image", "convert-image"]} />
+</BaseLayout>

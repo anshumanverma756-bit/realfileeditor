@@ -19,8 +19,9 @@ export function buildI18nScript(): string {
         if (table[key]) el.textContent = table[key];
       });
       document.documentElement.setAttribute('lang', code);
-      var sel = document.getElementById('lang-select');
-      if (sel) sel.value = code;
+      document.querySelectorAll('select.lang-select').forEach(function (sel) {
+        sel.value = code;
+      });
     };
 
     document.addEventListener('DOMContentLoaded', function () {

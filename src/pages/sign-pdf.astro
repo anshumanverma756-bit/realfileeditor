@@ -1,0 +1,32 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SignPdfTool from "../components/SignPdfTool";
+import FaqSection from "../components/FaqSection.astro";
+import RelatedTools from "../components/RelatedTools.astro";
+import { toFaqJsonLd } from "../lib/site";
+
+const faqs = [
+  { q: "How do I sign a PDF online?", a: "Draw your signature in the box, choose which page and corner to place it in, and press Sign PDF — the signature is embedded as an image directly on the page." },
+  { q: "Is this a legally binding e-signature?", a: "No — this places a drawn signature image onto the PDF for everyday use. For legally binding e-signatures with an audit trail, use a dedicated e-signature service." },
+];
+---
+
+<BaseLayout
+  title="Sign PDF Online Free — Draw & Place Your Signature | realfileeditor"
+  description="Sign a PDF online for free — draw your signature and place it on any page, right in your browser."
+  path="/sign-pdf"
+  jsonLd={toFaqJsonLd(faqs)}
+>
+  <section class="mx-auto max-w-3xl px-5 pt-14 pb-6 text-center">
+    <p class="font-mono text-xs uppercase tracking-wider text-[var(--accent)] mb-3">Free · No sign-up</p>
+    <h1 class="font-display text-4xl md:text-5xl font-semibold tracking-tight">Sign a PDF</h1>
+    <p class="mt-4 text-[var(--fg-muted)] text-lg">Draw your signature once, choose where it goes, and download the signed file.</p>
+  </section>
+
+  <section class="mx-auto max-w-2xl px-5 pb-16">
+    <SignPdfTool client:load />
+  </section>
+
+  <FaqSection faqs={faqs} title="Sign PDF — FAQ" />
+  <RelatedTools slugs={["watermark-pdf", "organize-pdf", "compress-pdf"]} />
+</BaseLayout>

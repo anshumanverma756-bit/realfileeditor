@@ -1,0 +1,32 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ResizeImageTool from "../components/ResizeImageTool";
+import FaqSection from "../components/FaqSection.astro";
+import RelatedTools from "../components/RelatedTools.astro";
+import { toFaqJsonLd } from "../lib/site";
+
+const faqs = [
+  { q: "Can I resize by percentage instead of exact pixels?", a: "Yes — switch to the percentage tab and drag the slider; the pixel dimensions update live." },
+  { q: "Will resizing keep the aspect ratio?", a: "Yes by default — the lock keeps width and height proportional. Turn it off to set both independently." },
+];
+---
+
+<BaseLayout
+  title="Resize Image Online Free — Exact Pixels or Percentage | realfileeditor"
+  description="Resize an image online for free — set exact pixel dimensions or scale by percentage, right in your browser."
+  path="/resize-image"
+  jsonLd={toFaqJsonLd(faqs)}
+>
+  <section class="mx-auto max-w-3xl px-5 pt-14 pb-6 text-center">
+    <p class="font-mono text-xs uppercase tracking-wider text-[var(--accent)] mb-3">Free · No sign-up</p>
+    <h1 class="font-display text-4xl md:text-5xl font-semibold tracking-tight">Resize an image</h1>
+    <p class="mt-4 text-[var(--fg-muted)] text-lg">Set exact pixel dimensions, or scale the whole thing by a percentage.</p>
+  </section>
+
+  <section class="mx-auto max-w-2xl px-5 pb-16">
+    <ResizeImageTool client:load />
+  </section>
+
+  <FaqSection faqs={faqs} title="Resize Image — FAQ" />
+  <RelatedTools slugs={["compress-image", "convert-image", "remove-background"]} />
+</BaseLayout>

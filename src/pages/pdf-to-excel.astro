@@ -1,0 +1,32 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PdfToExcelTool from "../components/PdfToExcelTool";
+import FaqSection from "../components/FaqSection.astro";
+import RelatedTools from "../components/RelatedTools.astro";
+import { toFaqJsonLd } from "../lib/site";
+
+const faqs = [
+  { q: "How does PDF to Excel figure out rows and columns?", a: "It groups text by vertical position into rows, then splits each row into columns wherever there's a wide horizontal gap — a common heuristic for tabular PDFs, not true table-structure recognition." },
+  { q: "Will it work on any PDF?", a: "It works best on PDFs with simple tables or plain text with a real text layer. Scanned PDFs and complex multi-column layouts won't reconstruct cleanly." },
+];
+---
+
+<BaseLayout
+  title="PDF to Excel Online Free — Extract Tables to Spreadsheet | realfileeditor"
+  description="Convert a PDF to an Excel spreadsheet online, free. Reconstructs rows and columns from the PDF's text layer."
+  path="/pdf-to-excel"
+  jsonLd={toFaqJsonLd(faqs)}
+>
+  <section class="mx-auto max-w-3xl px-5 pt-14 pb-6 text-center">
+    <p class="font-mono text-xs uppercase tracking-wider text-[var(--accent)] mb-3">Free · No sign-up</p>
+    <h1 class="font-display text-4xl md:text-5xl font-semibold tracking-tight">Convert a PDF to Excel</h1>
+    <p class="mt-4 text-[var(--fg-muted)] text-lg">Pulls rows and columns out of a PDF into a real .xlsx spreadsheet, one sheet per page.</p>
+  </section>
+
+  <section class="mx-auto max-w-2xl px-5 pb-16">
+    <PdfToExcelTool client:load />
+  </section>
+
+  <FaqSection faqs={faqs} title="PDF to Excel — FAQ" />
+  <RelatedTools slugs={["pdf-to-word", "compress-pdf", "split-pdf"]} />
+</BaseLayout>

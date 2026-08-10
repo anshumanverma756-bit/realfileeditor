@@ -1,0 +1,32 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PdfToWordTool from "../components/PdfToWordTool";
+import FaqSection from "../components/FaqSection.astro";
+import RelatedTools from "../components/RelatedTools.astro";
+import { toFaqJsonLd } from "../lib/site";
+
+const faqs = [
+  { q: "Does PDF to Word preserve the original formatting?", a: "It extracts the text into an editable .docx with a heading per page, not a pixel-perfect layout copy. Fonts, columns and images from the original aren't reproduced." },
+  { q: "Why did I get a warning about no extractable text?", a: "Scanned PDFs are just images of pages and have no underlying text layer, so there's nothing to extract. An OCR step would be needed first." },
+];
+---
+
+<BaseLayout
+  title="PDF to Word Online Free — Editable .docx | realfileeditor"
+  description="Convert a PDF to an editable Word document online, free. Extracts the text layer into a real .docx file."
+  path="/pdf-to-word"
+  jsonLd={toFaqJsonLd(faqs)}
+>
+  <section class="mx-auto max-w-3xl px-5 pt-14 pb-6 text-center">
+    <p class="font-mono text-xs uppercase tracking-wider text-[var(--accent)] mb-3">Free · No sign-up</p>
+    <h1 class="font-display text-4xl md:text-5xl font-semibold tracking-tight">Convert a PDF to Word</h1>
+    <p class="mt-4 text-[var(--fg-muted)] text-lg">Pulls the text out of a PDF into an editable .docx you can keep working in.</p>
+  </section>
+
+  <section class="mx-auto max-w-2xl px-5 pb-16">
+    <PdfToWordTool client:load />
+  </section>
+
+  <FaqSection faqs={faqs} title="PDF to Word — FAQ" />
+  <RelatedTools slugs={["pdf-to-excel", "word-to-pdf", "compress-pdf"]} />
+</BaseLayout>

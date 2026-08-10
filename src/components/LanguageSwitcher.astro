@@ -3,9 +3,8 @@ import { LANGUAGES } from "../lib/i18n";
 ---
 
 <select
-  id="lang-select"
+  class="lang-select h-9 border border-[var(--line)] bg-[var(--bg)] text-[var(--fg)] text-xs font-mono px-2 cursor-pointer hover:border-[var(--accent)] transition-colors"
   aria-label="Choose language"
-  class="h-9 border border-[var(--line)] bg-[var(--bg)] text-[var(--fg)] text-xs font-mono px-2 cursor-pointer hover:border-[var(--accent)] transition-colors"
 >
   {LANGUAGES.map((l) => (
     <option value={l.code}>{l.label}</option>
@@ -13,10 +12,17 @@ import { LANGUAGES } from "../lib/i18n";
 </select>
 
 <script>
-  const select = document.getElementById("lang-select") as HTMLSelectElement | null;
-  select?.addEventListener("change", () => {
-    const code = select.value;
-    localStorage.setItem("rfe-lang", code);
-    (window as any).__rfeApplyLang?.(code);
+  // This component can render more than once per page (desktop header +
+  // mobile footer). A shared id would mean only the first instance in the
+  // DOM ever gets a listener attached — use a class and wire up every
+  // instance, keeping them all in sync.
+  const selects = Array.from(document.querySelectorAll<HTMLSelectElement>("select.lang-select"));
+
+  selects.forEach((select) => {
+    select.addEventListener("change", () => {
+      const code = select.value;
+      localStorage.setItem("rfe-lang", code);
+      (window as any).__rfeApplyLang?.(code);
+    });
   });
 </script>

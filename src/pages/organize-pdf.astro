@@ -1,0 +1,32 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import OrganizePdfTool from "../components/OrganizePdfTool";
+import FaqSection from "../components/FaqSection.astro";
+import RelatedTools from "../components/RelatedTools.astro";
+import { toFaqJsonLd } from "../lib/site";
+
+const faqs = [
+  { q: "Can I delete pages while organizing a PDF?", a: "Yes — hover a thumbnail and click the ✕ to remove that page before saving." },
+  { q: "Can I reorder pages by dragging?", a: "Yes, drag any thumbnail to a new position; the page numbers update to match." },
+];
+---
+
+<BaseLayout
+  title="Organize PDF Pages Online Free — Reorder & Delete | realfileeditor"
+  description="Reorder or delete PDF pages by dragging thumbnails, free, right in your browser."
+  path="/organize-pdf"
+  jsonLd={toFaqJsonLd(faqs)}
+>
+  <section class="mx-auto max-w-3xl px-5 pt-14 pb-6 text-center">
+    <p class="font-mono text-xs uppercase tracking-wider text-[var(--accent)] mb-3">Free · No sign-up</p>
+    <h1 class="font-display text-4xl md:text-5xl font-semibold tracking-tight">Organize a PDF's pages</h1>
+    <p class="mt-4 text-[var(--fg-muted)] text-lg">Drag thumbnails into a new order, remove the pages you don't need, and save.</p>
+  </section>
+
+  <section class="mx-auto max-w-3xl px-5 pb-16">
+    <OrganizePdfTool client:load />
+  </section>
+
+  <FaqSection faqs={faqs} title="Organize PDF — FAQ" />
+  <RelatedTools slugs={["split-pdf", "merge-pdf", "rotate-pdf"]} />
+</BaseLayout>

@@ -38,6 +38,9 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
       "Convert, compress, merge and split files in seconds — and instead of guessing at \"low, medium, high,\" you drag a gauge to the exact size you want and we hit it.",
     "footer.tagline": "A precision toolkit for PDFs, images and documents — you set the target, we hit it.",
     "footer.rights": "All rights reserved.",
+    "grid.pdf": "PDF tools",
+    "grid.image": "Image tools",
+    "grid.document": "Document tools",
   },
   hi: {
     "nav.pdf": "पीडीएफ़",
@@ -54,6 +57,9 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
       "फ़ाइलों को सेकंडों में बदलें, कंप्रेस करें, जोड़ें या बाँटें — प्रीसेट चुनने के बजाय, अपनी मनचाही साइज़ खुद तय करें।",
     "footer.tagline": "पीडीएफ़, इमेज और डॉक्यूमेंट्स के लिए एक सटीक टूलकिट।",
     "footer.rights": "सर्वाधिकार सुरक्षित।",
+    "grid.pdf": "पीडीएफ़ टूल्स",
+    "grid.image": "इमेज टूल्स",
+    "grid.document": "डॉक्यूमेंट टूल्स",
   },
   fr: {
     "nav.pdf": "PDF",
@@ -70,6 +76,9 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
       "Convertissez, compressez, fusionnez et divisez vos fichiers en quelques secondes — choisissez la taille exacte que vous voulez.",
     "footer.tagline": "Un outil de précision pour vos PDF, images et documents.",
     "footer.rights": "Tous droits réservés.",
+    "grid.pdf": "Outils PDF",
+    "grid.image": "Outils image",
+    "grid.document": "Outils document",
   },
   es: {
     "nav.pdf": "PDF",
@@ -86,6 +95,9 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
       "Convierte, comprime, une y divide archivos en segundos — elige tú mismo el tamaño exacto que necesitas.",
     "footer.tagline": "Una herramienta de precisión para tus PDF, imágenes y documentos.",
     "footer.rights": "Todos los derechos reservados.",
+    "grid.pdf": "Herramientas PDF",
+    "grid.image": "Herramientas de imagen",
+    "grid.document": "Herramientas de documento",
   },
   de: {
     "nav.pdf": "PDF",
@@ -102,6 +114,9 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
       "Konvertiere, komprimiere, füge zusammen und teile Dateien in Sekunden — bestimme die genaue Zielgröße selbst.",
     "footer.tagline": "Ein präzises Werkzeug für PDFs, Bilder und Dokumente.",
     "footer.rights": "Alle Rechte vorbehalten.",
+    "grid.pdf": "PDF-Tools",
+    "grid.image": "Bild-Tools",
+    "grid.document": "Dokument-Tools",
   },
   ja: {
     "nav.pdf": "PDF",
@@ -118,5 +133,8 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
       "変換・圧縮・結合・分割を数秒で。プリセットではなく、狙ったファイルサイズを自分で指定できます。",
     "footer.tagline": "PDF、画像、ドキュメントのための精密なツールキット。",
     "footer.rights": "全著作権所有。",
+    "grid.pdf": "PDFツール",
+    "grid.image": "画像ツール",
+    "grid.document": "ドキュメントツール",
   },
 };

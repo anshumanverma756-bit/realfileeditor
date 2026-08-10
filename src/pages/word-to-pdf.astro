@@ -1,0 +1,32 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import WordToPdfTool from "../components/WordToPdfTool";
+import FaqSection from "../components/FaqSection.astro";
+import RelatedTools from "../components/RelatedTools.astro";
+import { toFaqJsonLd } from "../lib/site";
+
+const faqs = [
+  { q: "Does Word to PDF keep my formatting?", a: "Text, headings, lists and basic inline formatting (bold, italics) convert. Complex layouts, multiple columns and embedded objects may not come through exactly as in Word." },
+  { q: "What file types can I upload?", a: "A .docx file (the modern Word format). Older .doc files aren't supported yet." },
+];
+---
+
+<BaseLayout
+  title="Word to PDF Online Free — Convert .docx to PDF | realfileeditor"
+  description="Convert a Word document to PDF online, free, right in your browser."
+  path="/word-to-pdf"
+  jsonLd={toFaqJsonLd(faqs)}
+>
+  <section class="mx-auto max-w-3xl px-5 pt-14 pb-6 text-center">
+    <p class="font-mono text-xs uppercase tracking-wider text-[var(--accent)] mb-3">Free · No sign-up</p>
+    <h1 class="font-display text-4xl md:text-5xl font-semibold tracking-tight">Convert Word to PDF</h1>
+    <p class="mt-4 text-[var(--fg-muted)] text-lg">Turn a .docx into a shareable, print-ready PDF.</p>
+  </section>
+
+  <section class="mx-auto max-w-2xl px-5 pb-16">
+    <WordToPdfTool client:load />
+  </section>
+
+  <FaqSection faqs={faqs} title="Word to PDF — FAQ" />
+  <RelatedTools slugs={["pdf-to-word", "compress-pdf", "merge-pdf"]} />
+</BaseLayout>
