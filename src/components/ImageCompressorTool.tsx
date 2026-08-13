@@ -12,6 +12,7 @@ export default function ImageCompressorTool() {
   const [status, setStatus] = useState<Status>("idle");
   const [message, setMessage] = useState("");
   const [finalSize, setFinalSize] = useState<number | null>(null);
+  const [hitTarget, setHitTarget] = useState(true);
   const [downloadUrl, setDownloadUrl] = useState<string | null>(null);
   const [outName, setOutName] = useState<string>("");
 
@@ -32,8 +33,9 @@ export default function ImageCompressorTool() {
     setStatus("compressing");
     setMessage("Compressing…");
     try {
-      const res = await compressImageToTarget(file, target, () => setMessage("Compressing…"));
+      const res = await compressImageToTarget(file, target, (msg) => setMessage(msg));
       setFinalSize(res.finalSize);
+      setHitTarget(res.hitTarget);
       setOutName(res.file.name);
       setDownloadUrl(URL.createObjectURL(res.file));
       setStatus("done");
@@ -77,6 +79,11 @@ export default function ImageCompressorTool() {
 
       <GaugeSlider min={min} max={max} value={target} onChange={setTarget} disabled={status === "compressing"} />
 
+      <p className="mt-3 text-xs text-[var(--fg-muted)]">
+        Compressing re-encodes the image as JPEG so quality can be tuned precisely to your target — PNG, GIF, BMP and
+        TIFF inputs will lose transparency and come back as a .jpg.
+      </p>
+
       <div className="mt-8">
         {status !== "done" && (
           <button
@@ -98,6 +105,15 @@ export default function ImageCompressorTool() {
               <Stat label="Compressed" value={formatBytes(finalSize)} accent />
               <Stat label="Saved" value={`${Math.max(0, Math.round((1 - finalSize / file.size) * 100))}%`} accent />
             </div>
+
+            {!hitTarget && (
+              <p className="text-sm text-[var(--fg-muted)] mb-4">
+                This image's floor is {formatBytes(finalSize)} — a little above your target. It's already at the
+                lowest quality and smallest dimensions that still hold together as a usable photo; going smaller
+                would mean visibly degrading it further.
+              </p>
+            )}
+
             <div className="flex flex-wrap gap-3">
               <a
                 href={downloadUrl}

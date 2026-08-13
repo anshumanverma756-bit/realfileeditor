@@ -103,21 +103,21 @@ export default function OrganizePdfTool() {
     <div className="bracket-card p-6 md:p-10">
       <div className="flex items-start justify-between gap-4 mb-6">
         <div className="min-w-0">
-          <p className="font-mono text-[11px] uppercase tracking-wider text-[var(--fg-muted)]">File</p>
+          <p className="font-mono text-[11px] uppercase tracking-wider text-(--fg-muted)">File</p>
           <p className="font-medium truncate max-w-xs md:max-w-md">{file.name}</p>
-          <p className="font-mono text-xs text-[var(--fg-muted)] mt-0.5">{pages.length} pages · {formatBytes(file.size)}</p>
+          <p className="font-mono text-xs text-(--fg-muted) mt-0.5">{pages.length} pages · {formatBytes(file.size)}</p>
         </div>
-        <button onClick={reset} className="font-mono text-xs text-[var(--fg-muted)] hover:text-[var(--fg)] underline shrink-0">
+        <button onClick={reset} className="font-mono text-xs text-(--fg-muted) hover:text-(--fg) underline shrink-0">
           Choose another file
         </button>
       </div>
 
-      {status === "loading" && <p className="font-mono text-xs text-[var(--fg-muted)]">{message}</p>}
+      {status === "loading" && <p className="font-mono text-xs text-(--fg-muted)">{message}</p>}
       {status === "error" && <p className="text-sm text-[var(--color-danger)]">{message}</p>}
 
       {pages.length > 0 && (
         <>
-          <p className="font-mono text-[11px] uppercase tracking-wider text-[var(--fg-muted)] mb-3">Drag to reorder · click ✕ to remove</p>
+          <p className="font-mono text-[11px] uppercase tracking-wider text-(--fg-muted) mb-3">Drag to reorder · click ✕ to remove</p>
           <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-3 mb-6">
             {pages.map((p, i) => (
               <div
@@ -153,7 +153,7 @@ export default function OrganizePdfTool() {
 
           {status === "done" && downloadUrl && (
             <div className="animate-rise">
-              <p className="font-mono text-xs text-[var(--fg-muted)] mb-3">{finalSize !== null && formatBytes(finalSize)}</p>
+              <p className="font-mono text-xs text-(--fg-muted) mb-3">{finalSize !== null && formatBytes(finalSize)}</p>
               <a
                 href={downloadUrl}
                 download={file.name.replace(/\.pdf$/i, "") + "-organized.pdf"}

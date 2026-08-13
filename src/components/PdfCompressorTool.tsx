@@ -109,11 +109,20 @@ export default function PdfCompressorTool() {
               />
             </div>
 
+            {result.rasterized && (
+              <p className="text-sm text-[var(--fg-muted)] mb-4">
+                <span className="text-[var(--fg)] font-medium">Heads up: </span>
+                this PDF had little or nothing to compress as images, so pages were rendered to images and
+                rebuilt to reach your target. The text is no longer selectable or searchable in the result —
+                only use this if a smaller file matters more than that.
+              </p>
+            )}
+
             {!result.hitTarget && (
               <p className="text-sm text-[var(--fg-muted)] mb-4">
                 This file's floor with browser-side compression is {formatBytes(result.finalSize)} — a little above
-                your {formatBytes(target)} target. Text-heavy PDFs and vector content don't compress the same way
-                photos do, so this is the smallest we could get without visibly damaging the pages.
+                your {formatBytes(target)} target. This is the smallest we could get without pages becoming
+                difficult to read.
               </p>
             )}
 

@@ -66,7 +66,7 @@ export default function ZipFilesTool() {
           }}
         >
           <p className="font-display font-medium text-lg">Drop any files here</p>
-          <p className="text-sm text-[var(--fg-muted)] mt-1">PDFs, images, documents — any mix, any count</p>
+          <p className="text-sm text-(--fg-muted) mt-1">PDFs, images, documents — any mix, any count</p>
           <button
             onClick={() => inputRef.current?.click()}
             className="mt-5 inline-flex items-center h-10 px-5 bg-[var(--accent)] text-white text-sm font-medium hover:opacity-90 transition-opacity"
@@ -76,15 +76,15 @@ export default function ZipFilesTool() {
         </div>
       ) : (
         <>
-          <p className="font-mono text-[11px] uppercase tracking-wider text-[var(--fg-muted)] mb-3">
+          <p className="font-mono text-[11px] uppercase tracking-wider text-(--fg-muted) mb-3">
             {queue.length} file{queue.length > 1 ? "s" : ""} · {formatBytes(totalSize)} total
           </p>
           <ul className="space-y-2 mb-6">
             {queue.map((q) => (
               <li key={q.id} className="flex items-center gap-3 border border-[var(--line)] bg-[var(--bg-raised)] px-3 py-2.5">
                 <span className="flex-1 truncate text-sm">{q.file.name}</span>
-                <span className="font-mono text-xs text-[var(--fg-muted)]">{formatBytes(q.file.size)}</span>
-                <button onClick={() => removeFile(q.id)} aria-label={`Remove ${q.file.name}`} className="text-[var(--fg-muted)] hover:text-[var(--color-danger)] font-mono text-xs">
+                <span className="font-mono text-xs text-(--fg-muted)">{formatBytes(q.file.size)}</span>
+                <button onClick={() => removeFile(q.id)} aria-label={`Remove ${q.file.name}`} className="text-(--fg-muted) hover:text-[var(--color-danger)] font-mono text-xs">
                   ✕
                 </button>
               </li>
@@ -108,7 +108,7 @@ export default function ZipFilesTool() {
               </button>
             )}
             {queue.length > 0 && (
-              <button onClick={reset} className="inline-flex items-center h-10 px-5 font-mono text-xs text-[var(--fg-muted)] hover:text-[var(--fg)] underline">
+              <button onClick={reset} className="inline-flex items-center h-10 px-5 font-mono text-xs text-(--fg-muted) hover:text-[var(--fg)] underline">
                 Clear all
               </button>
             )}
@@ -118,7 +118,7 @@ export default function ZipFilesTool() {
 
           {status === "done" && zipUrl && (
             <div className="mt-6 animate-rise">
-              <p className="font-mono text-xs text-[var(--fg-muted)] mb-3">
+              <p className="font-mono text-xs text-(--fg-muted) mb-3">
                 archive.zip · {zipSize !== null && formatBytes(zipSize)}
               </p>
               <a
