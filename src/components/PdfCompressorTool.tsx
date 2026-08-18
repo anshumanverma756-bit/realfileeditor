@@ -95,19 +95,22 @@ export default function PdfCompressorTool() {
 
         {status === "done" && result && downloadUrl && (
           <div className="animate-rise">
-            <div className="grid grid-cols-3 gap-4 mb-6">
-              <Stat label="Original" value={formatBytes(result.originalSize)} />
-              <Stat
-                label="Compressed"
-                value={formatBytes(result.finalSize)}
-                accent
-              />
-              <Stat
-                label="Saved"
-                value={`${Math.max(0, Math.round((1 - result.finalSize / result.originalSize) * 100))}%`}
-                accent
-              />
-            </div>
+            {result.skipped ? (
+              <p className="text-sm text-[var(--fg-muted)] mb-4">
+                This file is already {formatBytes(result.originalSize)} — smaller than your{" "}
+                {formatBytes(target)} target — so no compression was necessary.
+              </p>
+            ) : (
+              <div className="grid grid-cols-3 gap-4 mb-6">
+                <Stat label="Original" value={formatBytes(result.originalSize)} />
+                <Stat label="Compressed" value={formatBytes(result.finalSize)} accent />
+                <Stat
+                  label="Saved"
+                  value={`${Math.max(0, Math.round((1 - result.finalSize / result.originalSize) * 100))}%`}
+                  accent
+                />
+              </div>
+            )}
 
             {result.rasterized && (
               <p className="text-sm text-[var(--fg-muted)] mb-4">
@@ -118,12 +121,15 @@ export default function PdfCompressorTool() {
               </p>
             )}
 
-            {!result.hitTarget && (
+            {!result.skipped && !result.hitTarget && (
               <p className="text-sm text-[var(--fg-muted)] mb-4">
-                This file's floor with browser-side compression is {formatBytes(result.finalSize)} — a little above
-                your {formatBytes(target)} target. This is the smallest we could get without pages becoming
-                difficult to read.
+                Target: {formatBytes(target)} · Best achievable: {formatBytes(result.finalSize)}. The document
+                couldn't be compressed further without significantly reducing readability.
               </p>
+            )}
+
+            {!result.skipped && result.hitTarget && !result.rasterized && (
+              <p className="text-sm text-[var(--success)] mb-4">Target achieved ✓</p>
             )}
 
             <div className="flex flex-wrap gap-3">

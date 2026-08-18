@@ -13,6 +13,7 @@ export default function ImageCompressorTool() {
   const [message, setMessage] = useState("");
   const [finalSize, setFinalSize] = useState<number | null>(null);
   const [hitTarget, setHitTarget] = useState(true);
+  const [skipped, setSkipped] = useState(false);
   const [downloadUrl, setDownloadUrl] = useState<string | null>(null);
   const [outName, setOutName] = useState<string>("");
 
@@ -36,6 +37,7 @@ export default function ImageCompressorTool() {
       const res = await compressImageToTarget(file, target, (msg) => setMessage(msg));
       setFinalSize(res.finalSize);
       setHitTarget(res.hitTarget);
+      setSkipped(res.skipped);
       setOutName(res.file.name);
       setDownloadUrl(URL.createObjectURL(res.file));
       setStatus("done");
@@ -100,19 +102,28 @@ export default function ImageCompressorTool() {
 
         {status === "done" && finalSize !== null && downloadUrl && (
           <div className="animate-rise">
-            <div className="grid grid-cols-3 gap-4 mb-6">
-              <Stat label="Original" value={formatBytes(file.size)} />
-              <Stat label="Compressed" value={formatBytes(finalSize)} accent />
-              <Stat label="Saved" value={`${Math.max(0, Math.round((1 - finalSize / file.size) * 100))}%`} accent />
-            </div>
-
-            {!hitTarget && (
+            {skipped ? (
               <p className="text-sm text-[var(--fg-muted)] mb-4">
-                This image's floor is {formatBytes(finalSize)} — a little above your target. It's already at the
+                This image is already {formatBytes(file.size)} — smaller than your {formatBytes(target)} target —
+                so no compression was necessary.
+              </p>
+            ) : (
+              <div className="grid grid-cols-3 gap-4 mb-6">
+                <Stat label="Original" value={formatBytes(file.size)} />
+                <Stat label="Compressed" value={formatBytes(finalSize)} accent />
+                <Stat label="Saved" value={`${Math.max(0, Math.round((1 - finalSize / file.size) * 100))}%`} accent />
+              </div>
+            )}
+
+            {!skipped && !hitTarget && (
+              <p className="text-sm text-[var(--fg-muted)] mb-4">
+                Target: {formatBytes(target)} · Best achievable: {formatBytes(finalSize)}. It's already at the
                 lowest quality and smallest dimensions that still hold together as a usable photo; going smaller
                 would mean visibly degrading it further.
               </p>
             )}
+
+            {!skipped && hitTarget && <p className="text-sm text-[var(--success)] mb-4">Target achieved ✓</p>}
 
             <div className="flex flex-wrap gap-3">
               <a

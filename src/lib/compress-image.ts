@@ -3,6 +3,8 @@ export interface ImageCompressResult {
   originalSize: number;
   finalSize: number;
   hitTarget: boolean;
+  /** True if the original was already at/under target — nothing was done. */
+  skipped: boolean;
 }
 
 const OUTPUT_MIME = "image/jpeg"; // see note below on why every format converts here
@@ -27,8 +29,13 @@ export async function compressImageToTarget(
   targetBytes: number,
   onProgress?: (message: string) => void
 ): Promise<ImageCompressResult> {
-  const bitmap = await createImageBitmap(file);
   const originalSize = file.size;
+
+  if (originalSize <= targetBytes) {
+    return { file, originalSize, finalSize: originalSize, hitTarget: true, skipped: true };
+  }
+
+  const bitmap = await createImageBitmap(file);
 
   // Try at full size first, then progressively smaller dimensions if even
   // minimum-quality JPEG at full size can't reach the target.
@@ -70,6 +77,7 @@ export async function compressImageToTarget(
     originalSize,
     finalSize: outFile.size,
     hitTarget: outFile.size <= targetBytes,
+    skipped: false,
   };
 }
 
