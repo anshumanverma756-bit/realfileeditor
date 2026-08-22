@@ -101,6 +101,7 @@
     position: relative;
     background: var(--bg-raised);
     border: 1px solid var(--line);
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
   }
   .bracket-card::before,
   .bracket-card::after {
@@ -110,6 +111,7 @@
     height: 14px;
     border: 2px solid var(--accent);
     opacity: 0.55;
+    transition: opacity 0.25s ease, width 0.25s ease, height 0.25s ease;
   }
   .bracket-card::before {
     top: -1px;
@@ -123,6 +125,12 @@
     border-left: none;
     border-top: none;
   }
+  .bracket-card:hover::before,
+  .bracket-card:hover::after {
+    opacity: 1;
+    width: 18px;
+    height: 18px;
+  }
 
   .tick-rule {
     background-image: repeating-linear-gradient(
@@ -135,9 +143,58 @@
     height: 8px;
   }
 
+  /* Animated variant: a soft light sweeps along the tick rule, like a
+     scanning instrument — used next to section headings. */
+  .tick-rule-scan {
+    position: relative;
+    overflow: hidden;
+  }
+  .tick-rule-scan::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    width: 40%;
+    background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--accent) 45%, transparent), transparent);
+    animation: scan-sweep 3.2s ease-in-out infinite;
+  }
+
   .mono-num {
     font-family: var(--font-mono);
     font-variant-numeric: tabular-nums;
+  }
+
+  /* Pulsing signal dot, used next to short status/eyebrow text */
+  .signal-dot {
+    position: relative;
+  }
+  .signal-dot::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    background: var(--accent);
+    animation: signal-ping 2.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  /* Scroll-reveal: elements start hidden/offset, JS toggles .is-visible
+     when they enter the viewport (see ScrollReveal.astro). Falls back to
+     always-visible if JS never runs, and is fully skipped under
+     prefers-reduced-motion via the rule in @layer base above. */
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  [data-reveal].is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    [data-reveal] {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
   }
 }
 
@@ -160,5 +217,26 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes scan-sweep {
+  0% {
+    transform: translateX(-120%);
+  }
+  100% {
+    transform: translateX(280%);
+  }
+}
+
+@keyframes signal-ping {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  70%,
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
   }
 }
