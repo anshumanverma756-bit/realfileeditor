@@ -1,0 +1,199 @@
+---
+// Pure SVG + CSS, server-rendered — no client JS, no hydration delay,
+// and no separate React island. Fully static output that just animates
+// via CSS keyframes once it's on the page.
+---
+
+<div class="file-convert-anim" aria-hidden="true">
+  <svg viewBox="0 0 380 320" xmlns="http://www.w3.org/2000/svg" role="img">
+    <title>A file being compressed and converted to a smaller format</title>
+
+    <!-- source document -->
+    <g class="fca-doc-in">
+      <rect x="28" y="88" width="88" height="112" rx="3" class="fca-doc-body" />
+      <path d="M 96 88 L 116 108 L 96 108 Z" class="fca-doc-fold" />
+      <line x1="42" y1="122" x2="102" y2="122" class="fca-doc-line" />
+      <line x1="42" y1="136" x2="102" y2="136" class="fca-doc-line" />
+      <line x1="42" y1="150" x2="88" y2="150" class="fca-doc-line" />
+      <line x1="42" y1="170" x2="102" y2="170" class="fca-doc-line" />
+      <line x1="42" y1="184" x2="76" y2="184" class="fca-doc-line" />
+      <text x="72" y="222" text-anchor="middle" class="fca-label">PDF</text>
+      <text x="72" y="238" text-anchor="middle" class="fca-sublabel">636 KB</text>
+    </g>
+
+    <!-- gauge / processing instrument, center -->
+    <g transform="translate(190,144)">
+      <rect x="-56" y="-14" width="112" height="28" rx="2" class="fca-gauge-track" />
+      <g class="fca-gauge-ticks">
+        {Array.from({ length: 15 }).map((_, i) => (
+          <line
+            x1={-52 + i * 7.4}
+            y1="10"
+            x2={-52 + i * 7.4}
+            y2={i % 5 === 0 ? 2 : 6}
+            class="fca-tick"
+          />
+        ))}
+      </g>
+      <rect x="-56" y="-14" width="112" height="28" rx="2" class="fca-gauge-outline" />
+      <g class="fca-caliper">
+        <rect x="-2" y="-16" width="4" height="32" class="fca-caliper-bar" />
+        <rect x="-5" y="-19" width="10" height="10" class="fca-caliper-head" transform="rotate(45)" />
+      </g>
+    </g>
+    <text x="190" y="112" text-anchor="middle" class="fca-processing">compressing…</text>
+
+    <!-- traveling token along the line -->
+    <line x1="118" y1="144" x2="262" y2="144" class="fca-connector" />
+    <circle cx="0" cy="144" r="4" class="fca-token">
+      <animateMotion dur="2.6s" repeatCount="indefinite" path="M 118 0 L 262 0" />
+    </circle>
+
+    <!-- output document, cycles through formats -->
+    <g transform="translate(0,0)">
+      <rect x="264" y="98" width="72" height="92" rx="3" class="fca-doc-body fca-doc-out" />
+      <path d="M 322 98 L 336 114 L 322 114 Z" class="fca-doc-fold fca-doc-out" />
+      <line x1="276" y1="128" x2="324" y2="128" class="fca-doc-line fca-doc-out" />
+      <line x1="276" y1="140" x2="324" y2="140" class="fca-doc-line fca-doc-out" />
+      <line x1="276" y1="152" x2="312" y2="152" class="fca-doc-line fca-doc-out" />
+
+      <text x="300" y="216" text-anchor="middle" class="fca-label fca-cycle fca-cycle-1">JPG</text>
+      <text x="300" y="216" text-anchor="middle" class="fca-label fca-cycle fca-cycle-2">DOCX</text>
+      <text x="300" y="216" text-anchor="middle" class="fca-label fca-cycle fca-cycle-3">ZIP</text>
+      <text x="300" y="216" text-anchor="middle" class="fca-label fca-cycle fca-cycle-4">PNG</text>
+
+      <text x="300" y="232" text-anchor="middle" class="fca-sublabel fca-accent">148 KB</text>
+    </g>
+  </svg>
+</div>
+
+<style>
+  .file-convert-anim {
+    width: 100%;
+    max-width: 380px;
+    margin-inline: auto;
+  }
+  .file-convert-anim svg {
+    width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+
+  .fca-doc-body {
+    fill: var(--bg-raised);
+    stroke: var(--line);
+    stroke-width: 1.5;
+  }
+  .fca-doc-fold {
+    fill: var(--line);
+  }
+  .fca-doc-line {
+    stroke: var(--fg-muted);
+    stroke-width: 2;
+    stroke-linecap: round;
+    opacity: 0.6;
+  }
+  .fca-label {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 500;
+    fill: var(--fg);
+  }
+  .fca-sublabel {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    fill: var(--fg-muted);
+  }
+  .fca-sublabel.fca-accent {
+    fill: var(--success);
+    font-weight: 500;
+  }
+  .fca-processing {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.05em;
+    fill: var(--fg-muted);
+    text-transform: uppercase;
+    animation: fca-blink 2.6s ease-in-out infinite;
+  }
+
+  .fca-gauge-track {
+    fill: var(--bg-raised);
+  }
+  .fca-gauge-outline {
+    fill: none;
+    stroke: var(--line);
+    stroke-width: 1.5;
+  }
+  .fca-tick {
+    stroke: var(--line);
+    stroke-width: 1;
+  }
+  .fca-caliper-bar,
+  .fca-caliper-head {
+    fill: var(--accent);
+  }
+  .fca-caliper {
+    animation: fca-caliper-sweep 2.6s ease-in-out infinite;
+    transform-origin: 0px 0px;
+  }
+
+  .fca-connector {
+    stroke: var(--line);
+    stroke-width: 1.5;
+    stroke-dasharray: 3 4;
+  }
+  .fca-token {
+    fill: var(--accent);
+  }
+
+  .fca-doc-out {
+    animation: fca-shrink 2.6s ease-in-out infinite;
+    transform-origin: 300px 144px;
+  }
+
+  .fca-cycle {
+    opacity: 0;
+    animation: fca-cycle-fade 10.4s ease-in-out infinite;
+  }
+  .fca-cycle-1 { animation-delay: 0s; }
+  .fca-cycle-2 { animation-delay: 2.6s; }
+  .fca-cycle-3 { animation-delay: 5.2s; }
+  .fca-cycle-4 { animation-delay: 7.8s; }
+
+  @keyframes fca-cycle-fade {
+    0%, 3% { opacity: 0; }
+    6%, 22% { opacity: 1; }
+    25%, 100% { opacity: 0; }
+  }
+
+  @keyframes fca-caliper-sweep {
+    0%, 100% { transform: translateX(-40px); }
+    50% { transform: translateX(40px); }
+  }
+
+  @keyframes fca-shrink {
+    0%, 40% { transform: scale(1); }
+    55%, 100% { transform: scale(0.82); }
+  }
+
+  @keyframes fca-blink {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fca-caliper,
+    .fca-doc-out,
+    .fca-cycle,
+    .fca-processing {
+      animation: none;
+    }
+    .fca-cycle-1 {
+      opacity: 1;
+    }
+    .fca-token {
+      display: none;
+    }
+  }
+</style>

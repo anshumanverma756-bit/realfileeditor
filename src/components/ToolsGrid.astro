@@ -15,7 +15,7 @@ const groups: { id: string; category: ToolCategory; title: string; i18nKey: stri
       <div class="flex items-baseline gap-3 mb-8">
         <span class="font-mono text-xs text-[var(--accent)]">{group.note}</span>
         <h2 class="font-display text-2xl md:text-3xl font-semibold" data-i18n={group.i18nKey}>{group.title}</h2>
-        <span class="tick-rule tick-rule-scan flex-1 hidden sm:block"></span>
+        <span class="tick-rule flex-1 hidden sm:block"></span>
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {tools.map((tool) => (
